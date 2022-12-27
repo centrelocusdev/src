@@ -3,16 +3,16 @@ import ButtonPrimary from "../components/ButtonPrimary";
 import InputPrimary from "../components/InputPrimary";
 
 
-const Kycform = () => {
+const KycForm = () => {
 
     return <section className="bg-blue-100 w-screen p-5">
         <div className="text-center">
-            <h2 className="text-4xl text-blue-800 leading-2">Begin your ID-Verification</h2>
+            <h2 className="text-4xl text-blue-500 leading-2">Begin your ID-Verification</h2>
             <p className="text-gray-500 text-lg pt-2">Verify your identity to participate in token sale.</p>
         </div>
         <form action="" className="bg-white  lg:w-[65%] py-4 mx-auto my-12 border">
             <div className="border-b lg:px-12 px-6 py-6">
-                <h3 className="text-[24px] text-blue-800">Personal Details</h3>
+                <h3 className="text-[24px] text-blue-500">Personal Details</h3>
                 <p className="text-gray-500">Your simple personal information required for identification</p>
             </div>
 
@@ -36,7 +36,7 @@ const Kycform = () => {
                     </div>
 
                     <div className="mt-3">
-                        <h4 className="text-lg px-3 text-blue-800 font-semibold">Your Address</h4>
+                        <h4 className="text-lg px-3 text-blue-500 font-semibold">Your Address</h4>
 
                         <div className="lg:flex md:flex justify-between">
                             <InputPrimary field={'Address line 1'} name={'address1'} placeholder={' '} />
@@ -57,7 +57,7 @@ const Kycform = () => {
             </div>
 
             <div className="border-b border-t lg:px-12 px-6 py-6 mt-5">
-                <h3 className="text-[24px] text-blue-800">Document Upload</h3>
+                <h3 className="text-[24px] text-blue-500">Document Upload</h3>
                 <p className="text-gray-500">To verify your identity, please upload any of your document</p>
             </div>
 
@@ -71,7 +71,7 @@ const Kycform = () => {
                 </div>
 
                 <div className="my-4">
-                    <h3 className="text-blue-800 font-semibold text-[18px]">To avoid delays when verifying account, Please make sure bellow:</h3>
+                    <h3 className="text-blue-500 font-semibold text-[18px]">To avoid delays when verifying account, Please make sure bellow:</h3>
 
                     <p className="my-1 text-gray-800">Chosen credential must not be expaired.</p>
                     <p className="my-1 text-gray-800">Document should be good condition and clearly visible.</p>
@@ -80,7 +80,7 @@ const Kycform = () => {
             </div>
 
             <div className="border-b border-t px-12 py-6 mt-5">
-                <h3 className="text-[24px] text-blue-800">Your Paying Wallet</h3>
+                <h3 className="text-[24px] text-blue-500">Your Paying Wallet</h3>
                 <p className="text-gray-500">Submit your wallet address that you are going to send funds</p>
             </div>
             <div className="px-12 pt-3">
@@ -111,4 +111,4 @@ const Kycform = () => {
     </section>
 }
 
-export default Kycform
+export default KycForm

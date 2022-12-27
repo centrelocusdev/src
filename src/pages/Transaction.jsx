@@ -3,27 +3,30 @@ import TransxElement from "../components/TransxElement";
 
 const Transaction = () => {
     return (
-        <section className="w-3/4 mx-auto p-12 min-h-screen">
-            <div className="p-5 bg-white w-full rounded">
+        <section className="lg:w-3/4 lg:p-12 mx-auto p-6 min-h-screen bg-blue-100 w-fit">
+            <div className="p-5 bg-white w-fit rounded">
                 <h2 className="text-[24px] text-blue-500">User Transactions</h2>
 
-                <ul className="list-none uppercase text-blue-500 flex justify-between mt-5 font-semibold inline">
-                    <li>tranx no</li>
-                    <li>tokens</li>
-                    <li>amount</li>
-                    <li>usd amount</li>
-                    <li>form</li>
-                    <li>type</li>
-                </ul>
-                <div className="border-b mb-5">
-                {
-                    TransxArray.map((elem, key) => (
-                        <TransxElement elem={elem} key={key} />
-                    ))
-                }
-                </div>
+                <table className="table-auto lg:w-full w-full sm:table-fixed mt-4 overflow-scroll bg-white">
+                <thead>
+                        <tr className="uppercase text-blue-500 font-semibold text-[12px] text-left" >
+                            <th className="p-2">tranx no</th>
+                            <th className="p-2">tokens</th>
+                            <th className="p-2">amount</th>
+                            <th className="p-2">usd amount</th>
+                            <th className="p-2">form</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        TransxArray.map((elem, key) => (
+                            <TransxElement transx={elem} key={key} />
+                        ))
+                    }
+                    </tbody>
+                </table>
                 
-                <div className="flex justify-between">
+                <div className="flex justify-between mt-4">
                     <div className="flex">
                         <button className="bg-gray-200 text-gray-600 px-4 py-2 text-center rounded m-1 hover:bg-blue-500 hover:text-white">Prev</button>
                         <button className="py-2 px-4 bg-blue-500 text-white rounded m-1 hover:bg-gray-200 hover:text-gray-600">1</button>
