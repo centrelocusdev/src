@@ -39,13 +39,11 @@ const NavMenu = () => {
             <button onClick={handleClick} className="cursor-pointer md:hidden float-right m-5 right-0 relative" >
             <FaBars />
             </button>
-
                 <ul className={`list-none md:ml-auto md:mr-auto md:flex lg:text-gray-500 text-gray-200 font-semibold text-[18px] text-left md:static fixed h-full md:w-auto md:bg-[transparent] bg-blue-600 right-0 top-0 md:space-y-0 overflow-hidden transition-all ${
                 sidebar ? "w-[200px]" : "w-0"
                 } md:pt-0 pt-10`}
                 style={{
                 backdropFilter: "blur(50px)",
-                // backgroundColor:'rgba(0, 0, 0,.9)'
                 }}>
                     {
                         navItems.map(({name, url}, index) => (
@@ -54,6 +52,10 @@ const NavMenu = () => {
                             </li>
                         ))
                     }
+
+                    <li>
+                    <button className="px-4 py-2 my-2 mx-4 w-fit h-fit border rounded text-[12px] text-white hover:bg-blue-500 font-semibold bg-blue-600">KYC Application</button>
+                    </li>
                 </ul>
             </div>
         </div>

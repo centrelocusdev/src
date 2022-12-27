@@ -1,12 +1,5 @@
 import React, {lazy, Suspense } from "react";
 import { BrowseRouter, Route, Link, Routes } from 'react-router-dom'
-// import Kycform from "./pages/KycForm";
-// import Profile from "./pages/Profile";
-// import Transaction from "./pages/Transaction";
-// import TransxDetails from "./pages/TransxDetIails";
-// import KycVerification from "./pages/KycVerification";
-// import KycCompleted from "./pages/KycCompleted";
-// import Dashboard from "./pages/Dashboard";
 
 import NavHeader from "./components/NavHeader";
 import NavMenu from "./components/NavMenu";
