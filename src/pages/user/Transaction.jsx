@@ -1,5 +1,5 @@
 import React from "react";
-import TransxElement from "../components/TransxElement";
+import TransxElement from "../../components/TransxElement";
 
 const Transaction = () => {
     return (

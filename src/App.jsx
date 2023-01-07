@@ -4,23 +4,23 @@ import { BrowseRouter, Route, Link, Routes } from 'react-router-dom'
 import NavHeader from "./components/NavHeader";
 import NavMenu from "./components/NavMenu";
 
-const Home = lazy(() => import("./pages")) 
-const Dashboard = lazy(() => import("./pages/Dashboard"))
-const Transaction = lazy(() => import("./pages/Transaction"))
-const TransactionDetails = lazy(() => import("./pages/TransxDetails"))
-const Profile = lazy(() => import("./pages/Profile"))
-const KycForm = lazy(() => import("./pages/KycForm"))
-const KycVerification = lazy(() => import("./pages/KycVerification"))
-const KycCompleted = lazy(() => import("./pages/KycCompleted"))
+const Home = lazy(() => import("./pages/user/Index")) 
+const Dashboard = lazy(() => import("./pages/user/Dashboard"))
+const Transaction = lazy(() => import("./pages/user/Transaction"))
+const TransactionDetails = lazy(() => import("./pages/user/TransxDetails"))
+const Profile = lazy(() => import("./pages/user/Profile"))
+const KycForm = lazy(() => import("./pages/user/KycForm"))
+const KycVerification = lazy(() => import("./pages/user/KycVerification"))
+const KycCompleted = lazy(() => import("./pages/user/KycCompleted"))
+const Admin = lazy(() => import("./pages/admin/Index"))
 
 
 function App() {
   return (
     <section className="bg-blue-100 text-[16px]">
        <Suspense fallback={<h1 className="text-center mt-5 text-4xl font-bold text-blue-400">...loading</h1>}>
-        <NavHeader />
-        <NavMenu />
         <Routes>
+          <Route path="/admin" element={<Admin />} />
           <Route path="/" element={<KycForm />} />
           <Route path="/kyc-form" element={<KycForm />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -32,10 +32,6 @@ function App() {
         </Routes>
       </Suspense>
     </section>
-
-    // <div className='bg-blue-100 text-[16px]'>
-    //     <Dashboard />
-    // </div>
   );
 }
 

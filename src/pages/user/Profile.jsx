@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from 'react'
-import InputPrimary from "../components/InputPrimary";
-import ButtonPrimary from "../components/ButtonPrimary";
+import InputPrimary from "../../components/InputPrimary";
+import ButtonPrimary from "../../components/ButtonPrimary";
 
 const Profile = () => {
     const tabs = ["Personal Data", "Setting", "Password"];
@@ -88,7 +88,7 @@ const Profile = () => {
                     }
                 </div>
                 {/* two factor verfication */}
-                <div className="border-red-500 bg-white rounded p-5 mt-10">
+                {/* <div className="border-red-500 bg-white rounded p-5 mt-10">
                     <h2 className="text-blue-500 font-semibold text-[24px]">Two Factor verfication</h2>
 
                     <p className="mt-2">Two-factor authentication is a method for protection your web account. When it is activated you need to enter not only your password, but also a special code. You can receive this code by in mobile app. Even if third person will find your password, then can't access with that code.</p>
@@ -98,7 +98,7 @@ const Profile = () => {
 
                         <p className="uppercase text-sm font-semibold text-gray-700">current status: <span className="px-2 bg-gray-200">disable</span> </p>
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className="m-5 lg:w-2/5">
                 <div className="p-5 border text-gray-600 bg-white rounded">

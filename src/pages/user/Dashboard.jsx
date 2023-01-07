@@ -1,9 +1,10 @@
 import React from "react";
-import ButtonPrimary from "../components/ButtonPrimary";
-import UserTransxElement from '../components/UserTransxElement'
+import ButtonPrimary from "../../components/ButtonPrimary";
+import UserTransxElement from '../../components/UserTransxElement'
 
 const Dashboard = () => {
     return (
+        <>
         <section className="w-full p-6 mx-auto min-h-screen container leading-7 rounded lg:p-12 lg:w-4/5">
             <div className="lg:flex justify-between border">
                 <div className="lg:w-1/3 bg-blue-500 text-white p-7 rounded">
@@ -112,6 +113,7 @@ const Dashboard = () => {
                 </div>
             </div> */}
         </section>
+        </>
     )
 }
 

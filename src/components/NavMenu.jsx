@@ -15,20 +15,17 @@ const NavMenu = () => {
             name: 'Dashboard',
             url: '/dashboard'
         }, {
-            name: 'Transaction',
-            url: '/transctions'
+            name: 'Buy Tokens',
+            url: '/buy-tokens'
         }, {
-            name: 'Transaction Details',
-            url: '/transaction-details'
+            name: 'ICO Distribution',
+            url: '/ico-distribution'
+        }, {
+            name: 'Transactions',
+            url: '/transctions'
         }, {
             name: 'Profile',
             url: '/profile'
-        }, {
-            name: 'KYC Verification',
-            url: '/kyc-verification'
-        }, {
-            name: 'KYC Completed',
-            url: '/kyc-completed'
         }
     ]
 
@@ -53,8 +50,8 @@ const NavMenu = () => {
                         ))
                     }
 
-                    <li>
-                    <button className="px-4 py-2 my-2 mx-4 w-fit h-fit border rounded text-[12px] text-white hover:bg-blue-500 font-semibold bg-blue-600">KYC Application</button>
+                    <li className="">
+                    <button onClick={() => navigate('/kyc-verification')} className="px-4 py-2 my-2 mx-4 w-fit h-fit border rounded text-[12px] text-white hover:bg-blue-500 font-semibold bg-blue-600">KYC Application</button>
                     </li>
                 </ul>
             </div>

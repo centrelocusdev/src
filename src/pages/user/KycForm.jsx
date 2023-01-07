@@ -1,16 +1,16 @@
 import React from "react";
-import ButtonPrimary from "../components/ButtonPrimary";
-import InputPrimary from "../components/InputPrimary";
+import ButtonPrimary from "../../components/ButtonPrimary";
+import InputPrimary from "../../components/InputPrimary";
 
 
 const KycForm = () => {
 
-    return <section className="bg-blue-100 w-screen p-5">
+    return <section className="bg-blue-100 p-5">
         <div className="text-center">
             <h2 className="text-4xl text-blue-500 leading-2">Begin your ID-Verification</h2>
             <p className="text-gray-500 text-lg pt-2">Verify your identity to participate in token sale.</p>
         </div>
-        <form action="" className="bg-white  lg:w-[65%] py-4 mx-auto my-12 border">
+        <form action="" className="bg-white  lg:w-[65%] py-4 mx-auto my-12 border rounded">
             <div className="border-b lg:px-12 px-6 py-6">
                 <h3 className="text-[24px] text-blue-500">Personal Details</h3>
                 <p className="text-gray-500">Your simple personal information required for identification</p>
@@ -86,7 +86,7 @@ const KycForm = () => {
             <div className="px-12 pt-3">
                 <div className="lg:flex md:flex flex-col justify-between">
                     <select name="wallet" id="wallet" className="w-[50%] bg-white rounded border bg-opacity-50 border-gray-300 focus:ring-2 focus:ring-blue-200 focus:bg-transparent focus:border-blue-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out mt-3 mx-3">
-                        <option value=" " className="">Select Wallet</option>
+                        <option value=" " className="">Daedalus wallet</option>
                         <option value="Ethereum" className="">Ethereum</option>
                         <option value="DashCoin" className="">DashCoin</option>
                         <option value="BitCoin" className="">BitCoin</option>

@@ -1,8 +1,11 @@
 import React from "react";
 import { FaFile } from 'react-icons/fa'
-import ButtonPrimary from "../components/ButtonPrimary";
+import ButtonPrimary from "../../components/ButtonPrimary";
+import { useNavigate } from "react-router-dom";
 
 const KycVerification = () => {
+    const navigate = useNavigate()
+
     return (
         <section className="w-full p-6 mx-auto min-h-screen container leading-7 rounded lg:p-12 lg:w-3/4">
             <div className="text-center ">
@@ -22,7 +25,7 @@ const KycVerification = () => {
                     You have not submitted your necessary documents to verify your identity. In order to purchase our tokens, please verify your identity.
                     </p>
 
-                    <ButtonPrimary text={'Click here to complete your KYC'} />
+                    <ButtonPrimary text={'Click here to complete your KYC'} handleClick={() => navigate('/kyc-form')} />
                 </div>
             </div>
         </section>

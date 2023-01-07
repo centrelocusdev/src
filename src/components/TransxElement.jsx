@@ -25,7 +25,7 @@ const TransxElement = ({transx}) => {
                 <span className="text-gray-400">{transx.fromDate}</span>
              </td>
              <td>
-             <button className="border border-green-500 rounded px-3 py-1 text-center">Purchase</button>
+             <button className="border border-green-500 rounded px-3 py-1 text-center">Details</button>
              </td>
          </tr>
     )
