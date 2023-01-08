@@ -4,7 +4,6 @@ import { BrowseRouter, Route, Link, Routes } from 'react-router-dom'
 import NavHeader from "./components/NavHeader";
 import NavMenu from "./components/NavMenu";
 
-const Home = lazy(() => import("./pages/user/Index")) 
 const Dashboard = lazy(() => import("./pages/user/Dashboard"))
 const Transaction = lazy(() => import("./pages/user/Transaction"))
 const TransactionDetails = lazy(() => import("./pages/user/TransxDetails"))
@@ -12,6 +11,8 @@ const Profile = lazy(() => import("./pages/user/Profile"))
 const KycForm = lazy(() => import("./pages/user/KycForm"))
 const KycVerification = lazy(() => import("./pages/user/KycVerification"))
 const KycCompleted = lazy(() => import("./pages/user/KycCompleted"))
+const BuyTokens = lazy(() => import("./pages/user/BuyTokens"))
+const IcoDistribution = lazy(() => import("./pages/user/IcoDistribution"))
 const Admin = lazy(() => import("./pages/admin/Index"))
 
 
@@ -24,6 +25,8 @@ function App() {
           <Route path="/" element={<KycForm />} />
           <Route path="/kyc-form" element={<KycForm />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/buy-tokens" element={<BuyTokens />} />
+          <Route path="/ico-distribution" element={<IcoDistribution />} />
           <Route path="/transctions" element={<Transaction />} />
           <Route path="/transaction-details" element={<TransactionDetails />} />
           <Route path="/profile" element={<Profile />} />

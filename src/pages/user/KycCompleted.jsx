@@ -1,9 +1,14 @@
 import React from "react";
 import ButtonPrimary from "../../components/ButtonPrimary";
 import { FaCheck } from "react-icons/fa";
+import NavHeader from "../../components/NavHeader";
+import NavMenu from "../../components/NavMenu";
 
 const KycCompleted = () => {
     return (
+        <>
+        <NavHeader />
+        <NavMenu />
         <section className="w-full p-6 mx-auto min-h-screen container leading-7 rounded lg:p-12 lg:w-3/4">
              <div className="bg-white text-gray-600 p-7 mt-5 lg:p-16">
                 <div className="border-2 border-green-300 rounded-full p-6 mx-auto w-fit">
@@ -19,6 +24,7 @@ const KycCompleted = () => {
                 </div>
             </div>
         </section>
+        </>
     )
 }
 

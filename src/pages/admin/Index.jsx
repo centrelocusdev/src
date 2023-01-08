@@ -14,8 +14,9 @@ import AdminHeader from "../../components/AdminHeader";
 const Index = () => {
   const navigate = useNavigate()
   const tabs = ["Dashboard", "Transactions", "KYC List", "Users List", "ICO/STO Stage", "Settings"]
-  const [tab, setTab] = useState([0])
+  const [tab, setTab] = useState(tabs[0])
 
+  console.log(tab)
   const handleCurrentTab = (currentTab) => {
     setTab(currentTab)
   }
@@ -54,7 +55,7 @@ const Index = () => {
     <section className="bg-gray-900 min-w-screen min-h-screen">
       <div className="flex mx-12">
         {/* menu */}
-        <div className="w-2/6 -translate-y-10">
+        <div className="w-2/5 -translate-y-10">
           <ul className="w-[60%] list-none bg-gray-800 text-gray-300 rounded-2xl p-5">
             {
               navItems.map(({name, url, icon}, index) => (

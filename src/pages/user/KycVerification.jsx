@@ -2,11 +2,16 @@ import React from "react";
 import { FaFile } from 'react-icons/fa'
 import ButtonPrimary from "../../components/ButtonPrimary";
 import { useNavigate } from "react-router-dom";
+import NavHeader from "../../components/NavHeader";
+import NavMenu from "../../components/NavMenu";
 
 const KycVerification = () => {
     const navigate = useNavigate()
 
     return (
+        <>
+        <NavHeader />
+        <NavMenu />
         <section className="w-full p-6 mx-auto min-h-screen container leading-7 rounded lg:p-12 lg:w-3/4">
             <div className="text-center ">
                 <h2 className="text-3xl font-normal text-blue-500 lg:text-4xl">KYC Verification</h2>
@@ -29,6 +34,7 @@ const KycVerification = () => {
                 </div>
             </div>
         </section>
+        </>
     )
 }
 

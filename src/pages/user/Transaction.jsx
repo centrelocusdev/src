@@ -1,8 +1,13 @@
 import React from "react";
+import NavHeader from "../../components/NavHeader";
+import NavMenu from "../../components/NavMenu";
 import TransxElement from "../../components/TransxElement";
 
 const Transaction = () => {
     return (
+        <>
+        <NavHeader />
+        <NavMenu />
         <section className="lg:w-3/4 lg:p-12 mx-auto p-6 min-h-screen bg-blue-100 w-fit">
             <div className="p-5 bg-white w-fit rounded">
                 <h2 className="text-[24px] text-blue-500">User Transactions</h2>
@@ -37,6 +42,7 @@ const Transaction = () => {
                 </div>
             </div>
         </section>
+        </>
     )
 }
 

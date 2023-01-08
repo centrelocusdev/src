@@ -1,7 +1,12 @@
 import React from "react";
+import NavHeader from "../../components/NavHeader";
+import NavMenu from "../../components/NavMenu";
 
 const TransxDetails = () => {
     return (
+        <>
+        <NavHeader />
+        <NavMenu />
         <section className="lg:lg:w-3/4 lg:p-12 mx-auto p-6 min-h-screen container">
             <div className="p-5 bg-white w-full rounded">
                 <h2 className="text-[24px] text-blue-500">Transaction Details</h2>
@@ -86,6 +91,7 @@ const TransxDetails = () => {
                 </div>
             </div>
         </section>
+        </>
     )
 }
 

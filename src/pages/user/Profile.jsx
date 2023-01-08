@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from 'react'
 import InputPrimary from "../../components/InputPrimary";
 import ButtonPrimary from "../../components/ButtonPrimary";
+import NavHeader from "../../components/NavHeader";
+import NavMenu from "../../components/NavMenu";
 
 const Profile = () => {
     const tabs = ["Personal Data", "Setting", "Password"];
@@ -17,6 +19,9 @@ const Profile = () => {
     };
 
     return (
+        <>
+        <NavHeader />
+        <NavMenu />
         <section className="lg:w-[80%] bg-blue-100 lg:flex justify-between mx-auto">
             <div className="m-5 lg:w-3/5">
                 <div className="bg-white rounded p-5">
@@ -138,6 +143,7 @@ const Profile = () => {
                 </div>
             </div>            
         </section>
+        </>
     )
 }
 
