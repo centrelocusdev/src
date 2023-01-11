@@ -5,7 +5,7 @@ const Dashboard = () => {
   return (
     <>
       <div className="flex justify-between px-12 -translate-y-10">
-        <div className="bg-gray-700 rounded-2xl p-4">
+        <div className="bg-zinc-800 rounded-2xl p-4">
           <h6 className="text-sm text-gray-300 uppercase">
             token stage - demo stage 4
           </h6>
@@ -17,7 +17,7 @@ const Dashboard = () => {
           </h5>
         </div>
 
-        <div className="bg-gray-700 rounded-2xl p-4">
+        <div className="bg-zinc-800 rounded-2xl p-4">
           <h6 className="text-sm text-gray-300 uppercase">
             totol users
             <span className="text-[12px] bg-blue-100 text-blue-900 rounded-xl px-1 mx-2">
@@ -33,7 +33,7 @@ const Dashboard = () => {
           </h5>
         </div>
 
-        <div className="bg-gray-700 rounded-2xl p-4">
+        <div className="bg-zinc-800 rounded-2xl p-4">
           <h6 className="text-sm text-gray-300 uppercase">
             token stage - demo stage 4
             <span className="text-[12px] bg-blue-100 text-blue-900 rounded-xl px-1 mx-2">
@@ -54,12 +54,10 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* graph */}
       <div className="mx-16 my-8 min-h-[16rem] border border-dashed border-gray-600 rounded-2xl p-5">
         <h5 className="text-yellow-500 text-2xl">Token Sale Graph</h5>
       </div>
 
-      {/* recent transaction */}
       <div className="mx-16 my-8 min-h-[10rem] border border-dashed border-gray-600 rounded-2xl p-5">
         <h5 className="text-yellow-500 text-2xl">Recent Transaction</h5>
 

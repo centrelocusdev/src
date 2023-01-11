@@ -8,7 +8,7 @@ import KycList from "./KycList";
 import UsersList from "./UsersList";
 import Stage from "./Stage";
 import Settings from "./Settings";
-import AdminHeader from "../../components/AdminHeader";
+import Header from "../../components/Header";
 
 
 const Index = () => {
@@ -51,12 +51,12 @@ const Index = () => {
 
   return (
     <>
-    <AdminHeader />
-    <section className="bg-gray-900 min-w-screen min-h-screen">
+    <Header name={'Admin'} />
+    <section className="bg-zinc-900 min-w-screen min-h-screen">
       <div className="flex mx-12">
         {/* menu */}
         <div className="w-2/5 -translate-y-10">
-          <ul className="w-[60%] list-none bg-gray-800 text-gray-300 rounded-2xl p-5">
+          <ul className="w-[60%] list-none bg-zinc-800 text-zinc-300 rounded-2xl p-5">
             {
               navItems.map(({name, url, icon}, index) => (
                 <li key={index} className="my-5">
