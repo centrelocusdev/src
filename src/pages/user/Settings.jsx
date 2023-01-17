@@ -138,9 +138,9 @@ const Settings = () => {
             <h3 className="text-lg text-orange-300">Recieving wallet</h3>
             <div className="flex justify-between mt-1">
               <input
-                className="text-gray-200 border-0 focus:outline-none focus:border rounded-full bg-transparent"
+                className="text-gray-200 border-0 focus:outline-none focus:border rounded-full bg-transparent truncate"
                 disabled={disabled}
-                value="0x39deb3.....e2ac64rd"
+                value="0x39deb3sjdsdsyduweywehwjewe2ac64rd"
               />
 
               <button
@@ -162,8 +162,8 @@ const Settings = () => {
             </p>
             <div className="flex gap-2 text-gray-200 font-semibold w-full my-2 items-center p-3 rounded-xl bg-[rgba(0,0,0,0.3)]">
             <FaLink className='text-md' />
-            <a className="overflow-hidden font-normal">
-              https://demo.themenio.com/
+            <a className="overflow-hidden font-normal truncate">
+              https://demo.themenio.com/ref=7d264f90653733592
             </a>
             <FaCopy className='text-md cursor-pointer hover:text-gray-400' title='copy to clipboard' />
             </div>

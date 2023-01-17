@@ -75,9 +75,9 @@ const BuyTokens = () => {
               </p>
 
               <div className="flex justify-between mt-5">
-                <div className="w-2/5 bg-[rgba(0,0,0,0.3)] p-3 rounded-2xl flex gap-3">
+                <div className="w-2/5 bg-[rgba(0,0,0,0.3)] p-3 rounded-2xl flex items-center gap-3 truncate">
                   <FaWallet />
-                  0x39deb3.....e2ac64rd
+                  <p className="w-4/5 truncate">0x39deb3jsuwiue2324nkee434er3e2ac64rd</p>
                   <FaCopy />
                 </div>
                 <span className="text-xl font-semibold">Or</span>
