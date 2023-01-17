@@ -9,9 +9,9 @@ const KycList = () => {
       <thead className="uppercase text-blue-500 text-left">
         <tr>
           <th>user</th>
-          <th>doc type</th>
-          <th>proof</th>
-          <th>submitted</th>
+          <th className='hidden md:block'>doc type</th>
+          <th className='hidden md:block'>proof</th>
+          <th className='hidden md:block'>submitted</th>
           <th>status</th>
           <th>action</th>
         </tr>
@@ -19,25 +19,25 @@ const KycList = () => {
       <tbody className="text-gray-100 font-normal">
         {kycApplications.map((kyc, key) => (
           <tr className="border-t border-gray-700 py-2">
-            <td className='lg:px-2 px-4 lg:py-3'>
+            <td className='lg:px-2 md:px-4 px-1 lg:py-3'>
               <h6>{kyc.name}</h6>
               <span className="text-sm text-gray-400">{kyc.id}</span>
             </td>
-            <td className='lg:px-2 px-4 lg:py-3'>
+            <td className='lg:px-2 px-4 lg:py-3 hidden md:block'>
               <h6>{kyc.docType}</h6>
             </td>
-            <td className='lg:px-2 px-4 lg:py-3'>
+            <td className='lg:px-2 px-4 lg:py-3 hidden md:block'>
               <h6>{kyc.proof}</h6>
             </td>
-            <td className='lg:px-2 px-4 lg:py-3'>
+            <td className='lg:px-2 px-4 lg:py-3 hidden md:block'>
               <h6 className="text-sm text-gray-400">{kyc.date}</h6>
             </td>
-            <td className='lg:px-2 px-4 lg:py-3'>
-                <button className={`${kyc.status === 'Pending' ? 'bg-blue-500' : kyc.status === 'Approved' ? 'bg-green-500' : 'bg-yellow-500'} px-3 py-1 rounded-xl text-[12px]  font-semibold text-gray-900 w-4/6`}>
+            <td className='lg:px-2 md:px-4 px-1 lg:py-3'>
+                <button className={`${kyc.status === 'Pending' ? 'bg-blue-500' : kyc.status === 'Approved' ? 'bg-green-500' : 'bg-yellow-500'} md:px-3 px-2 py-1 rounded-xl text-[12px]  font-semibold text-gray-900 w-4/6 text-center`}>
                   {kyc.status}
                 </button>
             </td>
-            <td className='lg:px-2 px-4 lg:py-3'>
+            <td className='lg:px-2 md:px-4 px-1 lg:py-3'>
               <a
                 href=""
                 className="text-sm text-gray-400 cursor-pointer underline"

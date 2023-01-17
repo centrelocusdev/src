@@ -53,10 +53,10 @@ const Index = () => {
     <>
     <Header name={'Admin'} />
     <section className="bg-zinc-900 min-w-screen min-h-screen">
-      <div className="flex mx-12">
+      <div className="flex md:mx-12 mx-6">
         {/* menu */}
-        <div className="w-2/5 -translate-y-10">
-          <ul className="w-[60%] list-none bg-zinc-800 text-zinc-300 rounded-2xl p-5">
+        <div className="md:w-2/5 md:-translate-y-10 mt-5 hidden">
+          <ul className="md:w-[60%] list-none bg-zinc-800 text-zinc-300 rounded-2xl p-5">
             {
               navItems.map(({name, url, icon}, index) => (
                 <li key={index} className="my-5">

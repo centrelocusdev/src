@@ -6,9 +6,9 @@ const AdminTransactions = ({transactions}) => {
       <thead className="uppercase text-blue-500 text-left">
         <tr>
           <th>tranx id</th>
-          <th>tokens</th>
-          <th>amount</th>
-          <th>base amount</th>
+          <th className="hidden md:block">tokens</th>
+          <th className="hidden md:block">amount</th>
+          <th className="hidden md:block">base amount</th>
           <th>action</th>
         </tr>
       </thead>
@@ -19,15 +19,15 @@ const AdminTransactions = ({transactions}) => {
               <h6>{t.tId}</h6>
               <span className="text-sm text-gray-400">{t.date}</span>
             </td>
-            <td className="lg:px-2 px-4 lg:py-3">
+            <td className="hidden md:block lg:px-2 px-4 lg:py-3">
               <h6>{t.tokens}</h6>
               <span className="text-sm text-gray-400">{t.tokenType}</span>
             </td>
-            <td className="lg:px-2 px-4 lg:py-3">
+            <td className="hidden md:block lg:px-2 px-4 lg:py-3">
               <h6>{t.amount}</h6>
               <span className="text-sm text-gray-400">{t.amountType}</span>
             </td>
-            <td className="lg:px-2 px-4 lg:py-3">
+            <td className="hidden md:block lg:px-2 px-4 lg:py-3">
               <h6>{t.baseAmount}</h6>
               <span className="text-sm text-gray-400">{t.currency}</span>
             </td>
