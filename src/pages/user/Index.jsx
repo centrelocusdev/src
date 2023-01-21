@@ -33,12 +33,10 @@ const Index = () => {
   const [tab, setTab] = useState(tabs[0]);
   const [showNav, setShowNav] = useState(false)
 
-  console.log(showNav)
   const handleShowNavClick = (e) => {
     setShowNav((prev) => !prev)
   }
 
-  console.log(tab);
   const handleCurrentTab = (currentTab) => {
     setTab(currentTab);
   };

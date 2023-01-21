@@ -1,5 +1,27 @@
 import React from "react";
 import AdminTransactions from "../../components/AdminTransactions";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Dashboard = () => {
   return (
@@ -56,6 +78,9 @@ const Dashboard = () => {
 
       <div className="md:mx-16 my-8 min-h-[16rem] border border-dashed border-gray-600 rounded-2xl p-5">
         <h5 className="text-yellow-500 text-2xl">Token Sale Graph</h5>
+        <div className="max-h-[16rem]">
+        <Line data={data} />
+        </div>
       </div>
 
       <div className="block md:mx-16 my-8 min-h-[10rem] border border-dashed border-gray-600 rounded-2xl p-5">
@@ -65,6 +90,45 @@ const Dashboard = () => {
       </div>
     </>
   );
+};
+
+const dataPeek = [12,45,65,23,87,46,24,17,87,65]
+
+const data = {
+  labels: [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ],
+  datasets: [
+    {
+        label: 'Token sales graph',
+        fill: true,
+        borderColor: '#facc15',
+        data: dataPeek,
+    }
+  ],
+  options: {
+    responsive: true,
+    scales: {
+        y: {
+        min: 0,
+        max: Math.max(...dataPeek)+5,
+        ticks: {
+            stepSize: 5
+        }
+        }
+    },
+    }
 };
 
 const transactions = [
