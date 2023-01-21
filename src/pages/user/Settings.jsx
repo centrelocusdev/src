@@ -19,18 +19,18 @@ const Settings = () => {
 
   return (
     <>
-      <div className="flex justify-between mb-8">
-        <div className="w-4/6 mr-8">
+      <div className="md:flex justify-between mb-8">
+        <div className="md:w-4/6 md:mr-8">
           <div className="min-h-[10rem] border border-dashed border-gray-600 rounded-2xl p-5">
 
           <h5 className="text-orange-300 text-2xl">Profile Details</h5>
 
-          <nav className="flex justify-start gap-16 text-xl font-semibold uppercase">
+          <nav className="flex justify-start md:gap-16 gap-7 text-xl font-semibold uppercase">
               <button
                 onClick={(e) => handleCurrentTab(e.target.textContent)}
                 className={`mt-3 transition-all ${
                   tab === "Personal Data" && "text-yellow-500 border-yellow-500"
-                } pt-2 border-b-2 border-transparent text-gray-400 text-[17px] hover:text-yellow-500 hover:border-yellow-500`}
+                } pt-2 border-b-2 border-transparent text-gray-400 text-sm md:text-lg hover:text-yellow-500 hover:border-yellow-500`}
               >
                 Personal Data
               </button>
@@ -38,7 +38,7 @@ const Settings = () => {
                 onClick={(e) => handleCurrentTab(e.target.textContent)}
                 className={`mt-3 transition-all ${
                   tab === "Setting" && "text-yellow-500 border-yellow-500"
-                } pt-2 border-b-2 border-transparent text-gray-400 text-[17px] hover:text-yellow-500 hover:border-yellow-500`}
+                } pt-2 border-b-2 border-transparent text-gray-400 text-sm md:text-lg hover:text-yellow-500 hover:border-yellow-500`}
               >
                 Setting
               </button>
@@ -46,7 +46,7 @@ const Settings = () => {
                 onClick={(e) => handleCurrentTab(e.target.textContent)}
                 className={`mt-3 transition-all ${
                   tab === "Password" && "text-yellow-500 border-yellow-500"
-                } pt-2 border-b-2 border-transparent text-gray-400 text-[17px] hover:text-yellow-500 hover:border-yellow-500`}
+                } pt-2 border-b-2 border-transparent text-gray-400 text-sm md:text-lg hover:text-yellow-500 hover:border-yellow-500`}
               >
                 Password
               </button>
@@ -125,7 +125,7 @@ const Settings = () => {
           </div>
         </div>
 
-        <div className="w-2/6">
+        <div className="md:w-2/6 mt-8 md:mt-0">
           <div className="text-zinc-400">
           <div className="min-h-[10rem] border border-dashed border-gray-600 rounded-2xl p-5">
             <h3 className="text-xl text-orange-300 font-semibold">

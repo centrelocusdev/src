@@ -6,8 +6,8 @@ const UserTransaction = ({transactions}) => {
         <thead className="uppercase text-blue-500 text-left">
           <tr>
             <th>tranx id</th>
-            <th>amount</th>
-            <th>submitted</th>
+            <th className="">amount</th>
+            <th className="hidden">submitted</th>
             <th>action</th>
           </tr>
         </thead>
@@ -22,7 +22,7 @@ const UserTransaction = ({transactions}) => {
                 <h6>{t.amount}</h6>
                 <span className="text-sm text-gray-400">{t.amountType}</span>
               </td>
-              <td className="lg:px-2 px-4 lg:py-3">
+              <td className="lg:px-2 px-4 lg:py-3 hidden">
                 <span className="text-sm text-gray-400">{t.submitted}</span>
               </td>
               <td className="lg:px-2 px-4 lg:py-3">

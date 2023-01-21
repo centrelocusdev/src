@@ -14,10 +14,10 @@ const Transaction = () => {
                 <thead>
                         <tr className="uppercase text-blue-500 font-semibold text-sm text-left" >
                             <th className="p-2">tranx no</th>
-                            <th className="p-2">tokens</th>
+                            <th className="p-2 hidden md:inline-block">tokens</th>
                             <th className="p-2">amount</th>
-                            <th className="p-2">usd amount</th>
-                            <th className="p-2">form</th>
+                            {/* <th className="p-2 hidden md:inline-block">usd amount</th> */}
+                            <th className="p-2 hidden md:inline-block">form</th>
                             <th className="p-2">type</th>
                         </tr>
                     </thead>

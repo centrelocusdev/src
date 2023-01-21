@@ -31,6 +31,12 @@ const Index = () => {
     "KYC Application",
   ];
   const [tab, setTab] = useState(tabs[0]);
+  const [showNav, setShowNav] = useState(false)
+
+  console.log(showNav)
+  const handleShowNavClick = (e) => {
+    setShowNav((prev) => !prev)
+  }
 
   console.log(tab);
   const handleCurrentTab = (currentTab) => {
@@ -72,12 +78,12 @@ const Index = () => {
 
   return (
     <>
-      <Header name={"Henry"} />
+      <Header name={"Henry"} showNav={handleShowNavClick} />
       <section className="bg-zinc-900 min-w-screen min-h-screen">
-        <div className="flex mx-12">
+        <div className="flex md:mx-12 px-6">
           {/* menu */}
-          <div className="w-1/5 -translate-y-10 mr-16">
-            <ul className="list-none bg-zinc-800 text-gray-300 rounded-2xl p-5">
+          <div className={`md:w-1/4 md:-translate-y-10 bg-zinc-800 text-gray-300 md:rounded-2xl md:mr-16 lg:block top-0 right-0 h-screen ${showNav?'fixed':'hidden'}`}>
+            <ul className={`list-none p-5 `}>
               {navItems.map(({ name, url, icon }, index) => (
                 <li key={index} className="my-5">
                   <button
@@ -95,7 +101,7 @@ const Index = () => {
 
           {/* pages */}
           <div className="w-full">
-            <div className="flex justify-between bg-zinc-800 rounded-2xl p-4 w-fit px-10 gap-8 -translate-y-10 uppercase ">
+            <div className="flex justify-between bg-zinc-800 rounded-2xl p-4 w-fit px-10 md:gap-8 md:-translate-y-10 mt-5 uppercase mb-3 ">
               <div>
                 <h6 className="text-sm text-gray-300">Tokens balance</h6>
                 <h5 className="text-white text-2xl font-semibold">

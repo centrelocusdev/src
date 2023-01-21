@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const PreSaleTokens = () => {
   return (
-    <div className="w-2/6">
+    <div className="md:w-2/6 mt-2">
       <button className="w-full bg-yellow-500 text-zinc-900 p-3 rounded-2xl flex gap-3 font-semibold justify-center cursor-pointer border border-transparent hover:bg-transparent hover:border-yellow-500 hover:text-yellow-500 text-sm mb-5">
         Add Your wallet address before you buy <FaArrowRight className="mt-1" />
       </button>

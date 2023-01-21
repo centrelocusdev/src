@@ -5,8 +5,8 @@ import PreSaleTokens from "../../components/PreSaleTokens";
 const BuyTokens = () => {
   return (
     <>
-      <div className="flex justify-between text-zinc-400 mb-8">
-        <div className="w-4/6 mr-8">
+      <div className="md:flex justify-between text-zinc-400 mb-8">
+        <div className="md:w-4/6 md:mr-8">
           <div className="min-h-[10rem] border border-dashed border-gray-600 rounded-2xl p-5">
             <span className="text-sm  uppercase font-semibold">step 1</span>
             <h2 className="text-[24px] text-orange-300">Amount to Contribute</h2>
@@ -44,7 +44,7 @@ const BuyTokens = () => {
               </div>
             </div>
 
-            <div className="flex justify-between rounded-2xl bg-[rgba(0,0,0,0.3)] p-3">
+            <div className="md:flex md:text-left text-center justify-between rounded-2xl bg-[rgba(0,0,0,0.3)] p-3">
               <div>
                 <span className="text-yellow-500 font-semibold text-sm">
                   + 10% SALE BONUS
@@ -74,14 +74,14 @@ const BuyTokens = () => {
                 you will receive an email about the successfull deposit.
               </p>
 
-              <div className="flex justify-between mt-5">
-                <div className="w-2/5 bg-[rgba(0,0,0,0.3)] p-3 rounded-2xl flex items-center gap-3 truncate">
+              <div className="md:flex justify-between mt-5 text-center">
+                <div className="md:w-2/5 bg-[rgba(0,0,0,0.3)] p-3 rounded-2xl flex items-center gap-3 truncate">
                   <FaWallet />
-                  <p className="w-4/5 truncate">0x39deb3jsuwiue2324nkee434er3e2ac64rd</p>
+                  <p className="md:w-4/5 truncate">0x39deb3jsuwiue2324nkee434er3e2ac64rd</p>
                   <FaCopy />
                 </div>
                 <span className="text-xl font-semibold">Or</span>
-                <button className="w-2/5 bg-yellow-500 text-zinc-900 p-3 rounded-2xl flex gap-3 font-semibold justify-center cursor-pointer border border-transparent hover:bg-transparent hover:border-yellow-500 hover:text-yellow-500">
+                <button className="md:w-2/5 w-full mt-2 bg-yellow-500 text-zinc-900 p-3 rounded-2xl flex gap-3 font-semibold justify-center cursor-pointer border border-transparent hover:bg-transparent hover:border-yellow-500 hover:text-yellow-500">
                   Connect ADA Wallet <FaArrowRight className="mt-1" />
                 </button>
               </div>

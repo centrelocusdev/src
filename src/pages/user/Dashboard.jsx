@@ -7,8 +7,8 @@ import UserTransaction from "../../components/UserTransaction";
 const Dashboard = () => {
   return (
     <>
-      <div className="flex justify-between">
-        <div className="w-4/6 mr-8">
+      <div className="md:flex justify-between mb-3">
+        <div className="md:w-4/6 md:mr-8">
           <div className="min-h-[10rem] border border-dashed border-gray-600 rounded-2xl py-5 px-3">
             <h5 className="text-orange-300 text-2xl">Recent Transaction</h5>
 
@@ -19,7 +19,7 @@ const Dashboard = () => {
             <h5 className="text-orange-300 text-2xl">Token Sale Graph</h5>
           </div>
         </div>
-        <div className="w-2/6">
+        <div className="md:w-2/6">
           <div className="min-h-[10rem] border border-dashed border-gray-600 rounded-2xl py-5 px-3">
               <h2 className="text-2xl text-orange-300">Token Calculation</h2>
               <p className="text-gray-400">Enter amount to calculate token.</p>

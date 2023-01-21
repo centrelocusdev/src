@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import LandingPageCard from "../components/LandingPageCard";
+import Navbar from "../../components/Navbar";
+import LandingPageCard from "../../components/LandingPageCard";
 import { BsLightbulb, BsBarChartLine } from "react-icons/bs";
 import { IoFootsteps } from "react-icons/io5";
-import Footer  from "../components/Footer";
+import Footer  from "../../components/Footer";
 
 const LandingPage = (props) => {
   return (
