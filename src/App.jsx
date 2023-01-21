@@ -4,6 +4,7 @@ import { BrowseRouter, Route, Link, Routes } from 'react-router-dom'
 import LandingPage from "./pages/general/LandingPage";
 import Signup from "./pages/general/Signup";
 import Login from "./pages/general/Login";
+import AdminLogin from "./pages/general/AdminLogin";
 const Admin = lazy(() => import("./pages/admin/Index"))
 const User = lazy(() => import("./pages/user/Index"))
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/user" element={<User />} />
           <Route path="/admin" element={<Admin />} />
         </Routes>
