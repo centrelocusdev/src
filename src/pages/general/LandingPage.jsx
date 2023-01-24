@@ -10,7 +10,7 @@ const LandingPage = (props) => {
     <>
       <Navbar />
       <main className="min-h-screen bg-zinc-900 text-zinc-400 py-8">
-        <div className="h-96 w-96 rounded-3xl bg-[rgba(255,255,255,0.1)] absolute z-50 mt-20 ml-12 rotate-45"></div>
+        <div className="h-96 w-96 hidden md:block rounded-3xl bg-[rgba(255,255,255,0.1)] absolute z-50 mt-20 ml-12 rotate-45"></div>
         {/* hero section */}
         <section className="md:flex gap-4 justify-center md:p-24 p-6 text-center md:text-left  z-40  backdrop-blur-lg min-h-screen">
           <div className="md:w-3/5">
