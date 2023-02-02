@@ -1,0 +1,57 @@
+* API documentation for the ICO token sale website
+
+* The APIs are built in Django REST Framework.
+
+* We have two types of users, as per requirements.
+1. Buyer: This type of user will buy the coins using their wallet.
+2. ADMIN - They will manage the transactions and the other process like validating KYC and other things.
+
+* For this purpose, we have made two types of registration serializers: AdminCustomRegistrationSerializer and BuyerCustomRegistrationSerializer.
+
+We can add others fields as per requirements. Basically, we made three tables.
+A single user table will store all user data along with two data fields: is_admin and is_buyer.
+The other two tables, named admin and buyer, will have the extra data related to respective user fields having a one-to-one relationship with the main user table.
+Here, we don't need to pass any tokens in headers.
+
+1. AdminCustomRegistrationSerializer 
+>>  URL: domain.com/api/registration/admin/
+    FIELDS: username, email, password1, password2, otp
+        phone, description
+
+2. BuyerCustomRegistrationSerializer
+>>  URL:domain.com/api/registration/buyer/
+    FIELDS: username, email, password1, password2, otp 
+        phone, wallet_address, project
+
+For both the Registration process we have implemented a OTP based login authentications. 
+There is two methods - 
+GET - In this method user need to submit his email and he will get a OTP on that mail.
+POST - In this method user need to fill all the other fields along with the OTP to get registered.
+
+Login 
+>>  URL: domain.com/api/login/
+    FIELDS: email, password, 
+    METHOD: POST
+
+Logout
+>>  URL: domain.com/api/logout/
+    METHOD: GET
+    User need to get logged in while using this method. Basically we are deleting the token of that user from Database.
+
+Change password
+>>  URL: domain.com/api/change-password/
+    FIELDS: old_password, new_password
+    METHOD: PUT
+    In the headers pass "Authorization" as key and "Token 2a9b8e165d7f1cf940d81ae60eeb9a8bd4fcb626" as value.
+    Replace the token with the user token which you will get while login.
+
+Password Reset
+>>  URL: domain.com/api/password_reset/
+    FIELDS: email
+    METHOD: POST
+    Here the user will add his email in which the server send a token.
+
+    URL: domain.com/api/password_resett/confirm/
+    FIELDS: password, token
+    METHOD: POST
+    Here the user will add his new password along with the token provided in email to reset the password.

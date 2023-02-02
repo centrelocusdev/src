@@ -3,37 +3,21 @@ import InputPrimary from "../../components/InputPrimary";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { register, reset } from "../../config/authSlice";
-import Spinner from '../../components/Spinner'
-import ButtonPrimary from "../../components/ButtonPrimary";
-import axios from "axios";
+import { registerAdmin, reset } from "../../config/authSlice";
+import Spinner from "../../components/Spinner";
 
-const api = "http://52.66.196.48:8000/api";
-
-const Signup = () => {
+const AdminRegister = () => {
   const [formData, setFormData] = useState({
-    fullname: "",
     username: "",
     email: "",
     phone: "",
     password1: "",
     password2: "",
-    wallet_address: "",
-    otp: "",
-    project: "",
+    description: "",
   });
 
-  const {
-    fullname,
-    username,
-    email,
-    phone,
-    password1,
-    password2,
-    wallet_address,
-    otp,
-    project,
-  } = formData;
+  const { username, email, phone, password1, password2, description } =
+    formData;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -43,16 +27,16 @@ const Signup = () => {
   );
 
   useEffect(() => {
-    if(isError) {
-      toast.error(message)
+    if (isError) {
+      toast.error(message);
     }
 
-    if(isSuccess || user) {
-      navigate('/user')
+    if (isSuccess || user) {
+      navigate("/admin");
     }
 
-    dispatch(reset())
-  }, [user, isError, isSuccess, message, navigate, dispatch])
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -67,55 +51,45 @@ const Signup = () => {
       toast.error("Passwords do not match");
     } else {
       const userData = {
-        fullname,
         username,
         email,
         phone,
         password1,
         password2,
-        wallet_address,
-        otp,
-        project,
+        description,
       };
 
-      dispatch(register(userData))
+      dispatch(registerAdmin(userData));
     }
   };
 
-  if(isLoading) {
-    return <Spinner />
+  if (isLoading) {
+    return <Spinner />;
   }
 
   return (
     <div className="min-h-screen bg-zinc-900 w-screen text-zinc-400">
       <div className="md:flex justify-between">
         {/* form */}
-        <div className="lg:w-2/3 min-h-screen p-8 flex flex-col justify-center">
+        <div className="lg:w-2/3 min-h-screen px-16 flex flex-col justify-center">
           <h2 className="text-3xl text-white font-bold uppercase underline decoration-4 underline-offset-8 decoration-yellow-500">
-            Signup
+            Admin Registeration
           </h2>
-          <form action="" className="text-xl mt-5" onSubmit={onSubmit} onChange={onChange}>
+          <form
+            action=""
+            className="text-xl mt-5"
+            onSubmit={onSubmit}
+            onChange={onChange}
+          >
             <div className="md:flex gap-4">
-              <InputPrimary
-                field={"Full name"}
-                name={"fullname"}
-                placeholder={" "}
-              />
               <InputPrimary
                 field={"Username"}
                 name={"username"}
                 placeholder={" "}
               />
-            </div>
-            <div className="md:flex gap-4">
               <InputPrimary
                 field={"Email Address"}
                 name={"email"}
-                placeholder={" "}
-              />
-              <InputPrimary
-                field={"Phone number"}
-                name={"phone"}
                 placeholder={" "}
               />
             </div>
@@ -133,28 +107,21 @@ const Signup = () => {
             </div>
             <div className="md:flex gap-4">
               <InputPrimary
-                field={"Wallet Address"}
-                name={"wallet_address"}
+                field={"Phone number"}
+                name={"phone"}
                 placeholder={" "}
               />
               <InputPrimary
-                field={"Project"}
-                name={"project"}
-                placeholder={" "}
-              />
-            </div>
-
-            <div className="md:flex items-center gap-4 justiyfy-between">
-              <InputPrimary
-                field={"OTP"}
-                name={"otp"}
+                field={"Description"}
+                name={"description"}
                 placeholder={" "}
                 className=""
               />
-              <button className="w-full h-fit bg-yellow-500 text-gray-900 py-2 rounded-2xl font-semibold">
-                Submit
-              </button>
             </div>
+
+            <button className="w-1/2 h-fit bg-yellow-500 text-gray-900 py-2 rounded-2xl font-semibold">
+              Submit
+            </button>
           </form>
         </div>
 
@@ -165,4 +132,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default AdminRegister;
