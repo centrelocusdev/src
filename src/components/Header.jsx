@@ -12,6 +12,8 @@ const Header = ({ name, showNav }) => {
   const { user } = useSelector((state) => {
     return state.auth
   });
+
+  console.log(user)
   
   return (
     <div className="md:h-[8rem] pb-4 h-fit bg-gradient-to-r from-[#D9D9D9] via-blue-500 to-orange-300">
@@ -32,7 +34,7 @@ const Header = ({ name, showNav }) => {
             </button>
           </div>
           <div className="flex">
-            <div className="text-xl capitalize flex font-semibold">{user.user.username}</div>
+            <div className="text-xl capitalize flex font-semibold">{(user?.data?.username) ? (user?.data?.username) : (user?.user?.username)}</div>
             <div className="ml-2 bg-blue-500 p-2 rounded-full w-fit h-fit">
               <FaUser className="text-white" />
             </div>

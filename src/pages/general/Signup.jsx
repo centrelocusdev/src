@@ -4,13 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { register, reset } from "../../config/authSlice";
-import Spinner from '../../components/Spinner'
-import ButtonPrimary from "../../components/ButtonPrimary";
-import axios from "axios";
-
-const api = "http://52.66.196.48:8000/api";
+import Spinner from '../../components/Spinner';
+import SendOtp from "../../components/SendOtp";
 
 const Signup = () => {
+  const [showRegister, setShowRegister] = useState(false);
   const [formData, setFormData] = useState({
     fullname: "",
     username: "",
@@ -41,6 +39,11 @@ const Signup = () => {
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
+
+  const handleShowRegister = (value) => {
+    setShowRegister(value ? true : false)
+    console.log(showRegister)
+  }
 
   useEffect(() => {
     if(isError) {
@@ -87,9 +90,11 @@ const Signup = () => {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-900 w-screen text-zinc-400">
+    <>
+      {
+        showRegister ? <>
+          <div className="min-h-screen bg-zinc-900 w-screen text-zinc-400">
       <div className="md:flex justify-between">
-        {/* form */}
         <div className="lg:w-2/3 min-h-screen p-8 flex flex-col justify-center">
           <h2 className="text-3xl text-white font-bold uppercase underline decoration-4 underline-offset-8 decoration-yellow-500">
             Signup
@@ -157,11 +162,14 @@ const Signup = () => {
             </div>
           </form>
         </div>
-
-        {/* photo */}
         <div className="w-2/3 min-h-screen bg-yellow-500 hidden lg:block"></div>
       </div>
     </div>
+        </> : (<>
+          <SendOtp handleShowRegister={handleShowRegister} />
+        </>)
+      }
+    </>
   );
 };
 

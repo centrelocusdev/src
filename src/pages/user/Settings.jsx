@@ -3,8 +3,36 @@ import InputPrimary from '../../components/InputPrimary';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import Tag from '../../components/Tag'
 import { FaLink, FaCopy } from 'react-icons/fa';
+import { useSelector, useDispatch } from "react-redux";
+import axios from 'axios';
+import API_URL from '../../config/API_URL';
 
 const Settings = () => {
+  const { user } = useSelector((state) => {
+    return state.auth
+  });
+
+  const [password, setPassword] = useState({
+    old_password: "",
+    new_password: ""
+  })
+
+  const {old_password, new_password} = password
+
+  const onChangePassword = (e) => {
+    setPassword((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  }
+
+  const onSubmitPassword =  (e) => {
+    e.preventDefault()
+    console.log(old_password, new_password)
+    // const response = await axios.put(`${API_URL}/change-password`, {password})
+
+  }
+
   const tabs = ["Personal Data", "Setting", "Password"];
   const [tab, setTab] = useState(tabs[0]);
   const [disabled, setDisabled] = useState(true);
@@ -93,23 +121,23 @@ const Settings = () => {
               <div className="text-center text-gray-400">Coming soon</div>
             )}
             {tab === tabs[2] && (
-              <form action="">
+              <form action="" onSubmit={onSubmitPassword} onChange={onChangePassword}>
                 <div className="lg:mr-16">
                   <InputPrimary
                     field={"Old Password"}
-                    name={"oldPassword"}
+                    name={"old_password"}
                     placeholder={" "}
                   />
                 </div>
                 <div className="lg:flex md:flex justify-between">
                   <InputPrimary
                     field={"New Password"}
-                    name={"newPassword"}
+                    name={"new_password"}
                     placeholder={" "}
                   />
                   <InputPrimary
                     field={"Confirm Password"}
-                    name={"confirmPassword"}
+                    name={"confirm_password"}
                     placeholder={" "}
                   />
                 </div>
@@ -119,7 +147,7 @@ const Settings = () => {
                   uppercase letter.
                 </p>
 
-                <ButtonPrimary text={"Update"} />
+                <button className={`px-3 py-2 m-4 text-gray-900 font-semibold text-[16px] bg-yellow-500 rounded lg:text-md`} types="submit">Submit</button>
               </form>
             )}
           </div>

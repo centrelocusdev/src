@@ -6,7 +6,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import LandingPage from "./pages/general/LandingPage";
 import Signup from "./pages/general/Signup";
 import Login from "./pages/general/Login";
-import AdminRegister from "./pages/general/AdminRegister";
+import SendOtp from "./pages/general/SendOtp";
+import AdminRegistration from "./pages/general/AdminRegistration";
 const Admin = lazy(() => import("./pages/admin/Index"));
 const User = lazy(() => import("./pages/user/Index"));
 
@@ -28,9 +29,10 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register-admin" element={<AdminRegister />} />
+          <Route path="send-otp" element={<SendOtp />} />
+          <Route path="/admin-registration" element={<AdminRegistration />} />
           <Route path="/user" element={<User />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/register" element={<Signup />} />
         </Routes>
       </Suspense>
       <ToastContainer />
