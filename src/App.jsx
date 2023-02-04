@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useState } from "react";
 import { withRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { FaSpinner } from "react-icons/fa";
 import 'react-toastify/dist/ReactToastify.css'
 
 import LandingPage from "./pages/general/LandingPage";
@@ -21,7 +22,7 @@ function App() {
       <Suspense
         fallback={
           <div className="min-h-screen bg-gray-900 text-center mt-5 text-4xl font-bold text-gray-200">
-            ...loading
+            <FaSpinner className="text-white" />
           </div>
         }
       >

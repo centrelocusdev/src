@@ -9,7 +9,6 @@ import KycApplication from "./KycApplication";
 import { useSelector } from "react-redux";
 import Settings from "./Settings";
 import { useEffect } from "react";
-import { ToastContainer } from "react-toastify";
 
 import Header from "../../components/Header";
 

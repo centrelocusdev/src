@@ -1,6 +1,4 @@
 import React from "react";
-import NavHeader from "../../components/NavHeader";
-import NavMenu from "../../components/NavMenu";
 import TransxElement from "../../components/TransxElement";
 
 const Transaction = () => {
