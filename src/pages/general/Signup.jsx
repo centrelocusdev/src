@@ -81,6 +81,7 @@ const Signup = () => {
         project,
       };
 
+      console.log(userData)
       dispatch(register(userData))
     }
   };

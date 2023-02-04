@@ -26,7 +26,11 @@ const Login = () => {
       toast.error(message);
     }
 
-    if (isSuccess || user) {
+    if(user && user.Response) {
+      toast.error(user.Response)
+    }
+
+    if (isSuccess || user?.data) {
       navigate("/user");
     }
 

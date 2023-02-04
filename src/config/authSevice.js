@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const API_URL = 'http://52.66.196.48:8000/api'
+import API_URL from "./API_URL";
 
 //register user
 const register = async (userData) => {
@@ -39,10 +38,18 @@ const logout = async () => {
   localStorage.removeItem('user')
 }
 
+//user change password
+const changePassword = async (headers, passwords) => {
+  const response = await axios.put(`${API_URL}/change-password/`, passwords, headers)
+
+  return response.data
+}
+
 const authService = {
   register,
   registerAdmin,
   login,
+  changePassword
 }
 
 export default authService

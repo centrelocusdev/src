@@ -12,8 +12,6 @@ const Header = ({ name, showNav }) => {
   const { user } = useSelector((state) => {
     return state.auth
   });
-
-  console.log(user)
   
   return (
     <div className="md:h-[8rem] pb-4 h-fit bg-gradient-to-r from-[#D9D9D9] via-blue-500 to-orange-300">

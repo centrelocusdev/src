@@ -1,36 +1,51 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import InputPrimary from '../../components/InputPrimary';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import Tag from '../../components/Tag'
 import { FaLink, FaCopy } from 'react-icons/fa';
 import { useSelector, useDispatch } from "react-redux";
-import axios from 'axios';
-import API_URL from '../../config/API_URL';
+import { toast } from 'react-toastify';
+import { changePassword, reset } from '../../config/authSlice';
 
 const Settings = () => {
-  const { user } = useSelector((state) => {
-    return state.auth
-  });
+  const dispatch = useDispatch()
 
-  const [password, setPassword] = useState({
+  const { user, updatePassword, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || updatePassword) {
+      toast.success(updatePassword?.message)
+    }
+
+    dispatch(reset());
+  }, [updatePassword, isError, isSuccess, message, dispatch]);
+
+  const [passwords, setPasswords] = useState({
     old_password: "",
-    new_password: ""
+    new_password: "",
+    confirm_password: ""
   })
 
-  const {old_password, new_password} = password
+  const {old_password, new_password, confirm_password} = passwords
 
   const onChangePassword = (e) => {
-    setPassword((prevState) => ({
+    setPasswords((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   }
 
-  const onSubmitPassword =  (e) => {
+  const onSubmitPassword = async (e) => {
     e.preventDefault()
-    console.log(old_password, new_password)
-    // const response = await axios.put(`${API_URL}/change-password`, {password})
-
+    const res = await dispatch(changePassword({passwords, headers: {
+      Authorization: `Token ${user.token}`
+    }}))
   }
 
   const tabs = ["Personal Data", "Setting", "Password"];
