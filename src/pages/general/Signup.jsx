@@ -3,11 +3,13 @@ import InputPrimary from "../../components/InputPrimary";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { register, reset } from "../../config/authSlice";
+// import { register, reset } from "../../config/authSlice";
 import Spinner from '../../components/Spinner';
 import SendOtp from "../../components/SendOtp";
+import { register } from "../../utils/api";
 
 const Signup = () => {
+  const navigate = useNavigate()
   const [showRegister, setShowRegister] = useState(false);
   const [formData, setFormData] = useState({
     fullname: "",
@@ -21,42 +23,11 @@ const Signup = () => {
     project: "",
   });
 
-  const {
-    fullname,
-    username,
-    email,
-    phone,
-    password1,
-    password2,
-    wallet_address,
-    otp,
-    project,
-  } = formData;
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
-
   const handleShowRegister = (value) => {
     setShowRegister(value ? true : false)
     console.log(showRegister)
   }
-
-  useEffect(() => {
-    if(isError) {
-      toast.error(message)
-    }
-
-    if(isSuccess || user) {
-      navigate('/user')
-    }
-
-    dispatch(reset())
-  }, [user, isError, isSuccess, message, navigate, dispatch])
-
+  
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -66,29 +37,13 @@ const Signup = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (password1 !== password2) {
+    if (formData.password1 !== formData.password2) {
       toast.error("Passwords do not match");
     } else {
-      const userData = {
-        fullname,
-        username,
-        email,
-        phone,
-        password1,
-        password2,
-        wallet_address,
-        otp,
-        project,
-      };
-
-      console.log(userData)
-      dispatch(register(userData))
+      const res = await register(formData)
+      if(res.user) navigate('/user-dashboard')
     }
   };
-
-  if(isLoading) {
-    return <Spinner />
-  }
 
   return (
     <>
@@ -106,11 +61,13 @@ const Signup = () => {
                 field={"Full name"}
                 name={"fullname"}
                 placeholder={" "}
+                value={formData.fullname}
               />
               <InputPrimary
                 field={"Username"}
                 name={"username"}
                 placeholder={" "}
+                value={formData.username}
               />
             </div>
             <div className="md:flex gap-4">
@@ -118,11 +75,13 @@ const Signup = () => {
                 field={"Email Address"}
                 name={"email"}
                 placeholder={" "}
+                value={formData.email}
               />
               <InputPrimary
                 field={"Phone number"}
                 name={"phone"}
                 placeholder={" "}
+                value={formData.phone}
               />
             </div>
             <div className="md:flex gap-4">
@@ -130,11 +89,13 @@ const Signup = () => {
                 field={"Password"}
                 name={"password1"}
                 placeholder={" "}
+                value={formData.password1}
               />
               <InputPrimary
                 field={"Confirm Password"}
                 name={"password2"}
                 placeholder={" "}
+                value={formData.password2}
               />
             </div>
             <div className="md:flex gap-4">
@@ -142,11 +103,13 @@ const Signup = () => {
                 field={"Wallet Address"}
                 name={"wallet_address"}
                 placeholder={" "}
+                value={formData.wallet_address}
               />
               <InputPrimary
                 field={"Project"}
                 name={"project"}
                 placeholder={" "}
+                value={formData.project}
               />
             </div>
 
@@ -155,6 +118,7 @@ const Signup = () => {
                 field={"OTP"}
                 name={"otp"}
                 placeholder={" "}
+                value={formData.otp}
                 className=""
               />
               <button className="w-full h-fit bg-yellow-500 text-gray-900 py-2 rounded-2xl font-semibold">

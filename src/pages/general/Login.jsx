@@ -1,41 +1,15 @@
 import React, { useState, useEffect } from "react";
 import InputPrimary from "../../components/InputPrimary";
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../utils/api";
 import { toast } from "react-toastify";
-import { login, reset } from "../../config/authSlice";
-import Spinner from "../../components/Spinner";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
-  const { email, password } = formData;
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
-
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-
-    if(user && user.Response) {
-      toast.error(user.Response)
-    }
-
-    if (isSuccess || user?.data) {
-      navigate("/user");
-    }
-
-    dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -46,17 +20,9 @@ const Login = () => {
 
   const onSubmit = async (e) => {
       e.preventDefault();
-      const userData = {
-        email, 
-        password
-      }
-
-      dispatch(login(userData))
+      const res = await login(formData)
+      if(res?.user) navigate('/user-dashboard')
   };
-
-  if(isLoading) {
-    return <Spinner />
-  }
 
   return (
     <div className="h-screen bg-zinc-900 w-screen text-zinc-400">
@@ -76,11 +42,13 @@ const Login = () => {
               field={"Email Address"}
               name={"email"}
               placeholder={" "}
+              value={formData.email}
             />
             <InputPrimary
               field={"Password"}
               name={"password"}
               placeholder={" "}
+              value={formData.password}
             />
 
             <button

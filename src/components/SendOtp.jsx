@@ -4,28 +4,31 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = 'http://52.66.196.48:8000/api'
+const API_URL = "http://52.66.196.48:8000/api";
 
-const SendOtp = ({handleShowRegister = () => {}}) => {
-  const navigate = useNavigate()
-  const [email, setEmail] = useState('');
+const SendOtp = ({ handleShowRegister = () => {} }) => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
 
   const onChange = (e) => {
-    setEmail(e.target.value)
+    setEmail(e.target.value);
   };
 
   const onSubmit = async (e) => {
-      e.preventDefault();
-      const response = await axios.post(`${API_URL}/get_otp/`, { email })
+    e.preventDefault();
+    if (email == "") {
+      toast.error("Please enter a valid email id");
+    } else {
+      const response = await axios.post(`${API_URL}/get_otp/`, { email });
 
-      if(response.status === 200) {
-        toast.success(`${response.data.Message}`)
-        handleShowRegister(true)
-        console.log(response.data)
+      if (response.data.Message) {
+        toast.success(`${response.data.Message}`);
+        handleShowRegister(true);
+        console.log(response.data);
+      } else if (response.data.Error) {
+        toast.error(`${response.data.Error}`);
       }
-      else {
-        toast.error(`${response.statusText} ${response.status}`)
-      }
+    }
   };
 
   return (

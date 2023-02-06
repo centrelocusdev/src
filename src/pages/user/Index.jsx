@@ -1,29 +1,15 @@
 import React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Dashboard from "./Dashboard";
 import BuyTokens from "./BuyTokens";
 import Transactions from "./Transactions";
 import IcoDistribution from "./IcoDistribution";
 import KycApplication from "./KycApplication";
-import { useSelector } from "react-redux";
 import Settings from "./Settings";
-import { useEffect } from "react";
-
+import { getCurrentUser } from "../../utils/api";
 import Header from "../../components/Header";
 
 const Index = () => {
-  const navigate = useNavigate();
-  const { user } = useSelector((state) => {
-    return state.auth;
-  });
-
-  useEffect(() => {
-    if (!user) {
-      navigate("/login");
-    }
-  });
-
   const tabs = [
     "Dashboard",
     "Buy Tokens",
@@ -34,10 +20,11 @@ const Index = () => {
   ];
   const [tab, setTab] = useState(tabs[0]);
   const [showNav, setShowNav] = useState(false);
+  const [currentUser, setCurrentUser] = useState('')
 
-  const handleShowNavClick = (e) => {
-    setShowNav((prev) => !prev);
-  };
+  const toggleNavbar = (e) => setShowNav(!showNav);
+  const hideNavbar = (e) => setShowNav(false)
+  const showNavbar = (e) => setShowNav(true)
 
   const handleCurrentTab = (currentTab) => {
     setTab(currentTab);
@@ -76,9 +63,21 @@ const Index = () => {
     },
   ];
 
+  useEffect(() => {
+    async function fetchData() {
+      const user = await getCurrentUser();
+      setCurrentUser(user);
+    }    
+    fetchData()
+  }, []);
+
+  document.body.addEventListener('click',()=>{
+    setShowNav(false)
+  })
+
   return (
     <>
-      <Header name={"Henry"} showNav={handleShowNavClick} />
+      <Header name={currentUser.username} toggleNavbar={toggleNavbar} hideNavbar={hideNavbar} showNavbar={showNavbar} />
       <section className="bg-zinc-900 min-w-screen min-h-screen">
         <div className="flex md:mx-12 px-6">
           {/* menu */}
@@ -91,7 +90,7 @@ const Index = () => {
               {navItems.map(({ name, url, icon }, index) => (
                 <li key={index} className="my-5">
                   <button
-                    onClick={(e) => handleCurrentTab(e.target.textContent)}
+                    onClick={(e) => {handleCurrentTab(e.target.textContent);setShowNav(false)}}
                     className={`${
                       tab == name && "text-orange-300"
                     } flex mr-10 md:px-0 px-5 w-full lg:w-fit hover:text-orange-300 py-3 text-left font-semibold`}

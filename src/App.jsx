@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import { FaSpinner } from "react-icons/fa";
 import 'react-toastify/dist/ReactToastify.css'
 
+import PrivateRoutes from './utils/PrivateRoutes'
 import LandingPage from "./pages/general/LandingPage";
 import Signup from "./pages/general/Signup";
 import Login from "./pages/general/Login";
@@ -32,8 +33,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="send-otp" element={<SendOtp />} />
           <Route path="/admin-registration" element={<AdminRegistration />} />
-          <Route path="/user" element={<User />} />
           <Route path="/register" element={<Signup />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/user-dashboard" element={<User />} />
+            <Route path="/admin-dashboard" element={<Admin />} />
+          </Route>
         </Routes>
       </Suspense>
       <ToastContainer />

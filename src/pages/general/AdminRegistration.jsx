@@ -3,11 +3,11 @@ import InputPrimary from "../../components/InputPrimary";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { registerAdmin, reset } from "../../config/authSlice";
 import Spinner from "../../components/Spinner";
 import SendOtp from "../../components/SendOtp";
 
 const AdminRegistration = () => {
+  const navigate = useNavigate();
   const [showRegister, setShowRegister] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -24,28 +24,6 @@ const AdminRegistration = () => {
     console.log(showRegister)
   }
 
-  const { username, email, phone, password1, password2, description } =
-    formData;
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
-
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-
-    if (isSuccess || user) {
-      navigate("/admin");
-    }
-
-    dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
-
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -55,26 +33,14 @@ const AdminRegistration = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (password1 !== password2) {
+    if (formData.password1 !== formData.password2) {
       toast.error("Passwords do not match");
     } else {
-      const userData = {
-        username,
-        email,
-        phone,
-        password1,
-        password2,
-        description,
-      };
+      
 
-      dispatch(registerAdmin(userData));
     }
   };
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
+  
   return (
     <>
       {showRegister ? (
