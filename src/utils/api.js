@@ -3,6 +3,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { api_url } from "./config";
+
+//send otp
+export const sendOtp = async (email) => {
+  const response = await axios.post(`${api_url}/get_otp/`, { email })
+  return response.data
+}
+
 //user register
 export const register = async (userData) => {
   const response = await axios.post(
@@ -56,12 +63,18 @@ export const changePassword = async (passwords) => {
   return response.data
 };
 
+//send token for forgot password
+export const sendToken = async (email) => {
+  const response = await axios.post(`${api_url}/password_reset/`, { email });
+
+  return response.data
+}
+
 //forgot password
-export const forgotPassword = async () => {
-  try {
-  } catch (err) {
-    toast.error(err);
-  }
+export const forgotPassword = async (password, token) => {
+  const response = await axios.post(`${api_url}/password_reset/confirm/`, { password, token });
+
+  return response.data
 };
 
 //admin login 
@@ -86,4 +99,28 @@ export const getCurrentUser = async () => {
   } else {
     toast.error("couldn't get user")
   }
+}
+
+//get user profile details
+export const getUserDetails = async () => {
+  const response = await axios.get(`${api_url}/buyer_update/`, {
+    headers: {
+      Authorization: `Token ${Cookies.get('src-token')}`
+    }
+  })
+
+  return response.data
+}
+
+//update user profile
+export const updateUserDetails = async (profileDetails) => {
+  const response = await axios.put(`${api_url}/buyer_update/`, profileDetails, {
+    headers: {
+      Authorization: `Token ${Cookies.get('src-token')}`
+    }
+  })
+
+  return response.data
+
+  return response.data
 }

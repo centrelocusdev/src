@@ -3,10 +3,25 @@ import InputPrimary from "../../components/InputPrimary";
 import ButtonPrimary from "../../components/ButtonPrimary";
 import Tag from "../../components/Tag";
 import { FaLink, FaCopy } from "react-icons/fa";
-import { changePassword } from "../../utils/api";
+import { getCurrentUser, changePassword, getUserDetails, updateUserDetails } from "../../utils/api";
 import { toast } from "react-toastify";
 
 const Settings = () => {
+  const [currentUser, setCurrentUser] = useState('')
+  //tabs 
+  const tabs = ["Personal Data", "Setting", "Password"];
+  const [tab, setTab] = useState(tabs[0]);
+  const [disabled, setDisabled] = useState(true);
+
+  const handleEditClick = () => {
+    setDisabled(false);
+  };
+
+  const handleCurrentTab = (currentTab) => {
+    setTab(currentTab);
+  };
+
+  //update password
   const initialPasswordsState = {
     old_password: "",
     new_password: "",
@@ -32,17 +47,43 @@ const Settings = () => {
     }
   };
 
-  const tabs = ["Personal Data", "Setting", "Password"];
-  const [tab, setTab] = useState(tabs[0]);
-  const [disabled, setDisabled] = useState(true);
+  //update profile details
+  useEffect(() => {
+    async function fetchUserDetails () {
+      const response = await getUserDetails()
+    }
+    fetchUserDetails()
+  })
 
-  const handleEditClick = () => {
-    setDisabled(false);
-  };
+  const [profileDetails, setProfileDetails] = useState({
+    full_name: "",
+    dob: "",
+    mobile_number: "",
+    nationality: ""
+  })
 
-  const handleCurrentTab = (currentTab) => {
-    setTab(currentTab);
-  };
+  const onChangeProfileDetails = (e) => {
+    setProfileDetails((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  const onSubmitProfileDetails = async (e) => {
+    e.preventDefault()
+    const response = await updateUserDetails(profileDetails)
+    if(response) {
+      setProfileDetails({
+        full_name: "",
+        dob: "",
+        mobile_number: "",
+        nationality: ""
+      })
+
+      toast.success("Profile updated successfully")
+    }
+      
+  }
 
   return (
     <>
@@ -79,45 +120,38 @@ const Settings = () => {
             </nav>
 
             {tab === tabs[0] && (
-              <form action="">
+              <form action="" onChange={onChangeProfileDetails} onSubmit={onSubmitProfileDetails}>
                 <div className="lg:flex md:flex justify-between">
                   <InputPrimary
                     field={"Full name"}
-                    name={"fullname"}
+                    name={"full_name"}
                     placeholder={" "}
-                    value={" "}
+                    value={profileDetails.full_name}
                   />
                   <InputPrimary
-                    field={"Email Address"}
-                    name={"emailAddress"}
+                    type={'date'}
+                    field={"Date of Birth"}
+                    name={"dob"}
                     placeholder={" "}
-                    value={" "}
+                    value={profileDetails.dob}
                   />
                 </div>
                 <div className="lg:flex md:flex justify-between">
                   <InputPrimary
-                    field={"Phone number"}
-                    name={"phoneNumber"}
+                    field={"Mobile number"}
+                    name={"mobile_number"}
                     placeholder={" "}
-                    value={" "}
+                    value={profileDetails.mobile_number}
                   />
-                  <InputPrimary
-                    field={"Date of Birth"}
-                    name={"dateOfBirth"}
-                    placeholder={" "}
-                    value={" "}
-                  />
-                </div>
-                <div className="lg:mr-16">
                   <InputPrimary
                     field={"Nationality"}
                     name={"nationality"}
                     placeholder={" "}
-                    value={" "}
+                    value={profileDetails.nationality}
                   />
                 </div>
-
-                <ButtonPrimary text={"Update profile"} />
+      
+                <button className="px-3 py-2 m-4 text-gray-900 font-semibold text-[16px] bg-yellow-500 rounded lg:text-md" type="submit">Update profile</button>
               </form>
             )}
             {tab === tabs[1] && (

@@ -6,9 +6,9 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import PrivateRoutes from './utils/PrivateRoutes'
 import LandingPage from "./pages/general/LandingPage";
-import Signup from "./pages/general/Signup";
+import Register from "./pages/general/Register";
 import Login from "./pages/general/Login";
-import SendOtp from "./pages/general/SendOtp";
+import ForgotPassword from "./pages/general/ForgotPassword";
 import AdminRegistration from "./pages/general/AdminRegistration";
 const Admin = lazy(() => import("./pages/admin/Index"));
 const User = lazy(() => import("./pages/user/Index"));
@@ -29,11 +29,10 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="send-otp" element={<SendOtp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/admin-registration" element={<AdminRegistration />} />
-          <Route path="/register" element={<Signup />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/user-dashboard" element={<User />} />
             <Route path="/admin-dashboard" element={<Admin />} />

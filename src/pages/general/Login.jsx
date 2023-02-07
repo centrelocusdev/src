@@ -50,6 +50,9 @@ const Login = () => {
               placeholder={" "}
               value={formData.password}
             />
+            <div className="md:-translate-y-10 -translate-y-8 float-right ">
+            <a href="/forgot-password" className="text-yellow-500 text-xs hover:text-zinc-400">Forgot password</a>
+            </div>
 
             <button
               className="bg-yellow-500 text-gray-900 py-2 w-full rounded-2xl font-semibold ml-3"
