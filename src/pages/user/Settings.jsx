@@ -3,13 +3,18 @@ import InputPrimary from "../../components/InputPrimary";
 import ButtonPrimary from "../../components/ButtonPrimary";
 import Tag from "../../components/Tag";
 import { FaLink, FaCopy } from "react-icons/fa";
-import { getCurrentUser, changePassword, getUserDetails, updateUserDetails } from "../../utils/api";
+import {
+  getCurrentUser,
+  changePassword,
+  getUserDetails,
+  updateUserDetails,
+} from "../../utils/api";
 import { toast } from "react-toastify";
 
 const Settings = () => {
-  const [currentUser, setCurrentUser] = useState('')
-  //tabs 
-  const tabs = ["Personal Data", "Setting", "Password"];
+  const [currentUser, setCurrentUser] = useState("");
+  //tabs
+  const tabs = ["Personal Data", "Password"];
   const [tab, setTab] = useState(tabs[0]);
   const [disabled, setDisabled] = useState(true);
 
@@ -26,7 +31,7 @@ const Settings = () => {
     old_password: "",
     new_password: "",
     confirm_password: "",
-  }
+  };
 
   const [passwords, setPasswords] = useState(initialPasswordsState);
 
@@ -43,47 +48,48 @@ const Settings = () => {
       toast.error("Password does not match");
     } else {
       await changePassword(passwords);
-      setPasswords(initialPasswordsState)
+      setPasswords(initialPasswordsState);
     }
   };
 
   //update profile details
-  useEffect(() => {
-    async function fetchUserDetails () {
-      const response = await getUserDetails()
-    }
-    fetchUserDetails()
-  })
-
   const [profileDetails, setProfileDetails] = useState({
     full_name: "",
     dob: "",
     mobile_number: "",
-    nationality: ""
-  })
+    nationality: "",
+  });
+
+  useEffect(() => {
+    async function fetchUserDetails() {
+      const response = await getUserDetails();
+      setProfileDetails(response);
+    }
+    fetchUserDetails();
+  }, []);
 
   const onChangeProfileDetails = (e) => {
-    setProfileDetails((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }))
-  }
+    setProfileDetails({
+      ...profileDetails,
+      [e.target.name]: e.target.value,
+    });
+    console.log(profileDetails.full_name);
+  };
 
   const onSubmitProfileDetails = async (e) => {
-    e.preventDefault()
-    const response = await updateUserDetails(profileDetails)
-    if(response) {
+    e.preventDefault();
+    const response = await updateUserDetails(profileDetails);
+    if (response) {
       setProfileDetails({
         full_name: "",
         dob: "",
         mobile_number: "",
-        nationality: ""
-      })
+        nationality: "",
+      });
 
-      toast.success("Profile updated successfully")
+      toast.success("Profile updated successfully");
     }
-      
-  }
+  };
 
   return (
     <>
@@ -104,14 +110,6 @@ const Settings = () => {
               <button
                 onClick={(e) => handleCurrentTab(e.target.textContent)}
                 className={`mt-3 transition-all ${
-                  tab === "Setting" && "text-yellow-500 border-yellow-500"
-                } pt-2 border-b-2 border-transparent text-gray-400 text-sm md:text-lg hover:text-yellow-500 hover:border-yellow-500`}
-              >
-                Setting
-              </button>
-              <button
-                onClick={(e) => handleCurrentTab(e.target.textContent)}
-                className={`mt-3 transition-all ${
                   tab === "Password" && "text-yellow-500 border-yellow-500"
                 } pt-2 border-b-2 border-transparent text-gray-400 text-sm md:text-lg hover:text-yellow-500 hover:border-yellow-500`}
               >
@@ -120,20 +118,24 @@ const Settings = () => {
             </nav>
 
             {tab === tabs[0] && (
-              <form action="" onChange={onChangeProfileDetails} onSubmit={onSubmitProfileDetails}>
+              <form
+                action=""
+                onChange={onChangeProfileDetails}
+                onSubmit={onSubmitProfileDetails}
+              >
                 <div className="lg:flex md:flex justify-between">
                   <InputPrimary
                     field={"Full name"}
                     name={"full_name"}
                     placeholder={" "}
-                    value={profileDetails.full_name}
+                    value={profileDetails.full_name || ""}
                   />
                   <InputPrimary
-                    type={'date'}
+                    type={"date"}
                     field={"Date of Birth"}
                     name={"dob"}
                     placeholder={" "}
-                    value={profileDetails.dob}
+                    value={profileDetails.dob || ""}
                   />
                 </div>
                 <div className="lg:flex md:flex justify-between">
@@ -141,23 +143,25 @@ const Settings = () => {
                     field={"Mobile number"}
                     name={"mobile_number"}
                     placeholder={" "}
-                    value={profileDetails.mobile_number}
+                    value={profileDetails.mobile_number || ""}
                   />
                   <InputPrimary
                     field={"Nationality"}
                     name={"nationality"}
                     placeholder={" "}
-                    value={profileDetails.nationality}
+                    value={profileDetails.nationality || ""}
                   />
                 </div>
-      
-                <button className="px-3 py-2 m-4 text-gray-900 font-semibold text-[16px] bg-yellow-500 rounded lg:text-md" type="submit">Update profile</button>
+
+                <button
+                  type="submit"
+                  className="px-3 py-2 m-4 text-gray-900 font-semibold text-[16px] bg-yellow-500 rounded lg:text-md"
+                >
+                  Update profile
+                </button>
               </form>
             )}
             {tab === tabs[1] && (
-              <div className="text-center text-gray-400">Coming soon</div>
-            )}
-            {tab === tabs[2] && (
               <form
                 action=""
                 onSubmit={onSubmitPassword}
