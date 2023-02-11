@@ -17,7 +17,7 @@ const Header = ({ name, toggleNavbar}) => {
           SRC
         </a>
 
-        <HiMenuAlt1 className="text-2xl md:hidden" onClick={toggleNavbar} />
+        <HiMenuAlt1 className="text-2xl lg:hidden cursor-pointer" onClick={toggleNavbar} />
         <div className="md:flex items-center">
           <div className="m-2 flex justify-between bg-[rgba(0,0,0,0.4)] rounded-full py-2 px-3 w-full">
             <input

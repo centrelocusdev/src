@@ -18,15 +18,44 @@ const KycApplication = () => {
     state: "",
     nationality: "",
     zip_code: "",
-    national_id_image: "",
+    national_id_image: null,
   });
 
+  //@nim national_id_image
+  const [nim, setNim] = useState("")
+
+  const [check1, setCheck1] = useState(false)
+  const [check2, setCheck2] = useState(false)
+  const onCheck1 = (e) => {
+    if(!e.target.checked) {
+      toast.error('Please check Privacy Policy')
+    }
+    setCheck1(e.taget.checked)
+  }
+  const onCheck2 = (e) => {
+    if(!e.target.checked) {
+      toast.error('Please mark the fields as checked')
+    }
+    setCheck2(e.target.checked)
+  }
+
   const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+      console.log(e.target.files[0].name)
+      if(e.target.files.length) {
+        console.log(e.target.name)
+        // setFormData({ ...formData, [e.target.name]: e.target.files[0].name });
+      }
+      else 
+        setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if(!check1 || !check2) {
+      toast.error('Please check the fields')
+    }
+
+    console.log(formData)
     const response = await kycForm(formData);
     toast.success("KYC completed");
   };
@@ -63,7 +92,7 @@ const KycApplication = () => {
 
   return (
     <>
-      <section className="p-5 text-zinc-400">
+      <section className="md:p-5 text-zinc-400">
         <div className="">
           <h2 className="text-4xl text-yellow-500 leading-2">
             Begin your ID-Verification
@@ -109,7 +138,7 @@ const KycApplication = () => {
         </nav>
 
         <form
-          action=""
+        onChange={onChange} onSubmit={onSubmit}
           className="mt-3 rounded-xl shadow-lg border border-dashed border-gray-400 p-5"
         >
 
@@ -230,7 +259,7 @@ const KycApplication = () => {
                     field={"Passport"}
                     name={"passport_image"}
                     placeholder={" "}
-                    value={formData.passport_image}
+                    // value={formData.passport_image}
                   />
                   <InputPrimary
                     type={"file"}
@@ -246,7 +275,7 @@ const KycApplication = () => {
                     field={"Driver's license"}
                     name={"driver_license"}
                     placeholder={" "}
-                    value={formData.driver_license}
+                    // value={formData.driver_license}
                   />
                 </div>
 
@@ -275,14 +304,14 @@ const KycApplication = () => {
                 You almost reached to end of your KYC proccess. Please check the following feilds carefully
               </p>
               <div className="flex lg:px-13 mx-2">
-                <input type="checkbox" name={"privacyPolicy"} className="" />
+                <input type="checkbox" name={"check1"} onChange={onCheck1} />
                 <label htmlFor="privacyPolicy" className="mx-3">
                   I Have Read The Terms Of Condition And Privary Policy.
                 </label>
               </div>
 
               <div className="flex lg:px-13 mx-2">
-                <input type="checkbox" name={"isCorrect"} className="" />
+                <input type="checkbox" name={"check2"} onChange={onCheck2} />
                 <label htmlFor="isCorrect" className="mx-3">
                   All The Personal Information I Have Entered Is Correct.
                 </label>

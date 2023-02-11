@@ -22,9 +22,9 @@ const Index = () => {
   const [showNav, setShowNav] = useState(false);
   const [currentUser, setCurrentUser] = useState('')
 
-  const toggleNavbar = (e) => setShowNav(!showNav);
-  const hideNavbar = (e) => setShowNav(false)
-  const showNavbar = (e) => setShowNav(true)
+  const toggleNavbar = (e) => {
+    setShowNav((prev) => !prev)
+  }
 
   const handleCurrentTab = (currentTab) => {
     setTab(currentTab);
@@ -71,13 +71,9 @@ const Index = () => {
     fetchData()
   }, []);
 
-  document.body.addEventListener('click',()=>{
-    setShowNav(false)
-  })
-
   return (
     <>
-      <Header name={currentUser.username} toggleNavbar={toggleNavbar} hideNavbar={hideNavbar} showNavbar={showNavbar} />
+      <Header name={currentUser.username} toggleNavbar={toggleNavbar}/>
       <section className="bg-zinc-900 min-w-screen min-h-screen">
         <div className="flex md:mx-12 px-6">
           {/* menu */}
@@ -85,12 +81,16 @@ const Index = () => {
             className={`md:w-1/4 md:-translate-y-10 bg-zinc-800 text-gray-300 md:rounded-2xl md:mr-16 lg:block top-0 right-0 h-screen ${
               showNav ? "fixed" : "hidden"
             }`}
+            onClick={(e) => {
+              showNav ? e.target.parentElement.parentElement.parentElement.classList.add('hidden') : e.target.parentElement.parentElement.parentElement.classList.remove('hidden')
+              setShowNav(false)
+            }}
           >
             <ul className={`list-none p-5 `}>
               {navItems.map(({ name, url, icon }, index) => (
                 <li key={index} className="my-5">
                   <button
-                    onClick={(e) => {handleCurrentTab(e.target.textContent);setShowNav(false)}}
+                    onClick={(e) => {handleCurrentTab(e.target.textContent)}}
                     className={`${
                       tab == name && "text-orange-300"
                     } flex mr-10 md:px-0 px-5 w-full lg:w-fit hover:text-orange-300 py-3 text-left font-semibold`}
