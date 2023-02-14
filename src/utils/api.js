@@ -114,6 +114,11 @@ export const updateUserDetails = async (profileDetails) => {
 
 //user kyc form
 export const kycForm = async (formData) => {
-  const response = await axios.put(`${api_url}/kyc/update/`, formData, headers);
+  const response = await axios.put(`${api_url}/kyc/update/`, formData, {
+    headers: {
+      Authorization: `Token ${Cookies.get("src-token")}`,
+      "Content-Type" : "multipart/form-data"
+    }
+  });
   return response.data
 };

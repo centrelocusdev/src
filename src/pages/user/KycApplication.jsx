@@ -4,11 +4,12 @@ import ButtonPrimary from "../../components/ButtonPrimary";
 import InputPrimary from "../../components/InputPrimary";
 import { kycForm } from "../../utils/api";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
+import { api_url } from "../../utils/config";
 
 const KycApplication = () => {
   const [formData, setFormData] = useState({
     first_name: "",
-    last_name: "",
+    last_name: "Haldiya",
     email: "",
     phone_number: "",
     dob: "",
@@ -18,50 +19,55 @@ const KycApplication = () => {
     state: "",
     nationality: "",
     zip_code: "",
-    national_id_image: null,
   });
 
   //@nim national_id_image
-  const [nim, setNim] = useState("")
+  const [nim, setNim] = useState();
+  const onSelectFile = (e) => {
+    setNim(e.target.files[0]);
+  };
 
-  const [check1, setCheck1] = useState(false)
-  const [check2, setCheck2] = useState(false)
+  const [check1, setCheck1] = useState(false);
+  const [check2, setCheck2] = useState(false);
   const onCheck1 = (e) => {
-    if(!e.target.checked) {
-      toast.error('Please check Privacy Policy')
+    if (!e.target.checked) {
+      toast.error("Please check Privacy Policy");
     }
-    setCheck1(e.taget.checked)
-  }
+    setCheck1(e.target?.checked);
+  };
   const onCheck2 = (e) => {
-    if(!e.target.checked) {
-      toast.error('Please mark the fields as checked')
+    if (!e.target.checked) {
+      toast.error("Please mark the fields as checked");
     }
-    setCheck2(e.target.checked)
-  }
+    setCheck2(e.target?.checked);
+  };
 
   const onChange = (e) => {
-      console.log(e.target.files[0].name)
-      if(e.target.files.length) {
-        console.log(e.target.name)
-        // setFormData({ ...formData, [e.target.name]: e.target.files[0].name });
-      }
-      else 
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if(!check1 || !check2) {
-      toast.error('Please check the fields')
+    if (!check1 || !check2) {
+      toast.error("Please check the fields");
     }
 
-    console.log(formData)
-    const response = await kycForm(formData);
+    let data = new FormData();
+    for (const d in formData) {
+      data.append(d, formData[d]);
+    }
+    data.append("national_id_image", nim);
+    const response = await kycForm(data);
     toast.success("KYC completed");
   };
 
   //tabs
-  const tabs = ["Personal Details", "Your Address", "Document Upload", "Finals"];
+  const tabs = [
+    "Personal Details",
+    "Your Address",
+    "Document Upload",
+    "Finals",
+  ];
   const [tab, setTab] = useState(tabs[0]);
 
   const handleCurrentTab = (currentTab) => {
@@ -69,26 +75,22 @@ const KycApplication = () => {
   };
 
   const onPressNext = () => {
-    const index = tabs.indexOf(tab)+1
-    console.log(index < tabs.length-1)
-    if(index <= tabs.length-1) {
-      setTab(tabs[index])
+    const index = tabs.indexOf(tab) + 1;
+    if (index <= tabs.length - 1) {
+      setTab(tabs[index]);
+    } else {
+      setTab(tabs[0]);
     }
-    else {
-      setTab(tabs[0])
-    }
-  }
+  };
 
   const onPressPrevious = () => {
-    const index = tabs.indexOf(tab)-1
-    console.log(index, tabs.length-1)
-    if(index >= 0) {
-      setTab(tabs[index])
+    const index = tabs.indexOf(tab) - 1;
+    if (index >= 0) {
+      setTab(tabs[index]);
+    } else {
+      setTab(tabs[tabs.length - 1]);
     }
-    else {
-      setTab(tabs[tabs.length-1])
-    }
-  }
+  };
 
   return (
     <>
@@ -138,10 +140,11 @@ const KycApplication = () => {
         </nav>
 
         <form
-        onChange={onChange} onSubmit={onSubmit}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          encType="multipart/form-data"
           className="mt-3 rounded-xl shadow-lg border border-dashed border-gray-400 p-5"
         >
-
           {tab === tabs[0] && (
             <>
               <p className="text-gray-500 pl-3 mt-5 border-l-4 border-gray-400">
@@ -197,7 +200,9 @@ const KycApplication = () => {
           {tab === tabs[1] && (
             <>
               <p className="text-gray-500 text-gray-500 pl-3 mt-5 border-l-4 border-gray-400">
-                We care about your privacy and your address won't be shared with anybody. Please enter the details carefully as we might need to contact you in future
+                We care about your privacy and your address won't be shared with
+                anybody. Please enter the details carefully as we might need to
+                contact you in future
               </p>
               <div className="mt-3">
                 <div className="lg:flex md:flex justify-between">
@@ -249,36 +254,18 @@ const KycApplication = () => {
           {tab === tabs[2] && (
             <>
               <p className="text-gray-500 text-gray-500 pl-3 mt-5 border-l-4 border-gray-400">
-                In order to complete your KYC, please upload any/all of the following
-                personal documents carefully
+                In order to complete your KYC, please upload any/all of the
+                following personal documents carefully
               </p>
               <div className="py-6">
                 <div className="lg:flex md:flex justify-between mt-3">
                   <InputPrimary
                     type={"file"}
-                    field={"Passport"}
-                    name={"passport_image"}
-                    placeholder={" "}
-                    // value={formData.passport_image}
-                  />
-                  <InputPrimary
-                    type={"file"}
                     field={"National card"}
-                    name={"national_id_image"}
+                    name={"nim"}
                     placeholder={" "}
-                    value={formData.national_id_image}
                   />
                 </div>
-                <div className="lg:w-[390px]">
-                  <InputPrimary
-                    type={"file"}
-                    field={"Driver's license"}
-                    name={"driver_license"}
-                    placeholder={" "}
-                    // value={formData.driver_license}
-                  />
-                </div>
-
                 <div className="my-4">
                   <h3 className="text-yellow-500 font-semibold text-[18px]">
                     To avoid delays when verifying account, Please make sure
@@ -301,8 +288,53 @@ const KycApplication = () => {
           {tab === tabs[3] && (
             <>
               <p className="text-gray-500 text-gray-500 pl-3 my-5 border-l-4 border-gray-400">
-                You almost reached to end of your KYC proccess. Please check the following feilds carefully
+                You almost reached to end of your KYC proccess. Please check the
+                following feilds carefully
               </p>
+              <div className="flex lg:px-13 mx-2 items-center">
+                <select
+                  name="wallet"
+                  id="wallet"
+                  className="w-full bg-zinc-800 h-fit rounded-2xl border bg-opacity-50 border-transparent focus:border-yellow-200 focus:bg-transparent focus:border-yellow-500 text-base outline-none text-gray-200 px-3 py-2 leading-8 transition-colors duration-200 ease-in-out mt-3 mx-3"
+                >
+                  <option
+                    value=" "
+                    className="p-4 bg-zinc-900 text-gray-200 rounded-2xl"
+                  >
+                    Choose your Wallet type
+                  </option>
+                  <option
+                    value=" "
+                    className="p-4 bg-zinc-900 text-gray-200 rounded-2xl"
+                  >
+                    Daedalus wallet
+                  </option>
+                  <option
+                    value="Ethereum"
+                    className="p-4 bg-zinc-900 text-gray-200 rounded-2xl"
+                  >
+                    Ethereum
+                  </option>
+                  <option
+                    value="DashCoin"
+                    className="p-4 bg-zinc-900 text-gray-200 rounded-2xl"
+                  >
+                    DashCoin
+                  </option>
+                  <option
+                    value="BitCoin"
+                    className="p-4 bg-zinc-900 text-gray-200 rounded-2xl"
+                  >
+                    BitCoin
+                  </option>
+                </select>
+
+                <InputPrimary
+                  field={"Your address for token"}
+                  name={"walletAddress"}
+                  placeholder={" "}
+                />
+              </div>
               <div className="flex lg:px-13 mx-2">
                 <input type="checkbox" name={"check1"} onChange={onCheck1} />
                 <label htmlFor="privacyPolicy" className="mx-3">
@@ -317,49 +349,26 @@ const KycApplication = () => {
                 </label>
               </div>
 
-              <ButtonPrimary text={"Proccess to verify"} />
+              <input
+                type="submit"
+                value="Proceed Now"
+                className="px-3 py-2 m-4 text-gray-900 font-semibold text-[16px] bg-yellow-500 rounded lg:text-md"
+              />
             </>
           )}
 
           <div className="mt-5 w-full text-yellow-500 flex justify-between text-xl">
-              <FaArrowAltCircleLeft className="hover:text-yellow-200 cursor-pointer" title="Previous" onClick={onPressPrevious} />
-              <FaArrowAltCircleRight className="hover:text-yellow-200 cursor-pointer" title="Next" onClick={onPressNext} />
+            <FaArrowAltCircleLeft
+              className="hover:text-yellow-200 cursor-pointer"
+              title="Previous"
+              onClick={onPressPrevious}
+            />
+            <FaArrowAltCircleRight
+              className="hover:text-yellow-200 cursor-pointer"
+              title="Next"
+              onClick={onPressNext}
+            />
           </div>
-
-          {/* <div className="bg-zinc-800 p-6 mt-5">
-            <h3 className="text-[24px] text-yellow-500">Your Paying Wallet</h3>
-            <p className="text-gray-500">
-              Submit your wallet address that you are going to send funds
-            </p>
-          </div>
-          <div className="pt-3">
-            <div className="lg:flex md:flex flex-col justify-between">
-              <select
-                name="wallet"
-                id="wallet"
-                className="w-2/3 bg-white rounded border bg-opacity-50 border-gray-300 focus:ring-2 focus:ring-yellow-200 focus:bg-transparent focus:border-yellow-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out mt-3 mx-3"
-              >
-                <option value=" " className="">
-                  Daedalus wallet
-                </option>
-                <option value="Ethereum" className="">
-                  Ethereum
-                </option>
-                <option value="DashCoin" className="">
-                  DashCoin
-                </option>
-                <option value="BitCoin" className="">
-                  BitCoin
-                </option>
-              </select>
-
-              <InputPrimary
-                field={"Your address for token"}
-                name={"walletAddress"}
-                placeholder={" "}
-              />
-            </div>
-          </div> */}
         </form>
       </section>
     </>
