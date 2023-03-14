@@ -1,11 +1,63 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
-import LandingPageCard from "../../components/LandingPageCard";
-import { BsLightbulb, BsBarChartLine } from "react-icons/bs";
+import {
+  BsLightbulb,
+  BsBarChartLine,
+} from "react-icons/bs";
 import { IoFootsteps } from "react-icons/io5";
-import Footer  from "../../components/Footer";
+import Footer from "../../components/Footer";
+import mission from "../../assets/mission.svg";
+import people from "../../assets/people.svg";
+import faq from "../../assets/faq.svg";
 
 const LandingPage = (props) => {
+  const calculateTimeLeft = () => {
+    const difference = +new Date("2023-02-21") - +new Date();
+    let timeLeft = {};
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    }
+
+    return timeLeft;
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  });
+
+  const addLeadingZeros = (value) => {
+    value = String(value);
+    while (value.length < 2) {
+      value = "0" + value;
+    }
+    return value;
+  };
+
+  const timerComponents = [];
+
+  Object.keys(timeLeft).forEach((interval) => {
+    if (!timeLeft[interval]) {
+      return;
+    }
+
+    timerComponents.push(
+      <div className="" key={interval}>
+        <h5 className="font-semibold">{addLeadingZeros(timeLeft[interval])}</h5>
+        <h6 className="text-sm capitalize ">{interval}</h6>
+      </div>
+    );
+  });
   return (
     <>
       <Navbar />
@@ -17,7 +69,6 @@ const LandingPage = (props) => {
             <h2 className="md:w-4/5 text-white md:text-3xl text-xl md:leading-9 font-semibold">
               Blockchain can provide major benefits for the energy sectors
             </h2>
-
             <p className="w-4/5 leading-6 mt-3 mx-auto md:mx-0">
               Join the movement and invest in sustainable energy with the Wind
               Energy Company by investing in our ICO
@@ -27,25 +78,11 @@ const LandingPage = (props) => {
               <h5 className="text-xl">Pre ICO Ends:</h5>
 
               <div className="flex gap-1 justify-center text-3xl">
-                <div className="">
-                  <h5 className="font-semibold">29</h5>
-                  <span className="text-sm">Days</span>
-                </div>
-                <span className="text-white font-semibold">:</span>
-                <div className="">
-                  <h5 className="font-semibold">02</h5>
-                  <span className="text-sm">Hours</span>
-                </div>
-                <span className="text-white font-semibold">:</span>
-                <div className="">
-                  <h5 className="font-semibold">32</h5>
-                  <span className="text-sm">Minutes</span>
-                </div>
-                <span className="text-white font-semibold">:</span>
-                <div className=" ">
-                  <h5 className="font-semibold">45</h5>
-                  <span className="text-sm">Seconds</span>
-                </div>
+                {timerComponents.length ? (
+                  timerComponents
+                ) : (
+                  <span>Time's up!</span>
+                )}
               </div>
 
               <div className="text-gray-900 w-fit mx-auto bg-gradient-to-r from-orange-500 to-yellow-300 px-8 py-2 rounded font-semibold translate-y-8">
@@ -65,20 +102,10 @@ const LandingPage = (props) => {
 
         <section className="w-4/5 md:p-16 p-6 mx-auto bg-zinc-800 md:my-8 m-4 rounded-2xl shadow-xl shadow-black/40 ">
           <div className="md:flex justify-between gap-7">
-            <div className="md:w-1/5">
-              <img
-                src="https://dummyimage.com/24x24/#ffffff"
-                alt="dummmyimage"
-                className="w-full"
-              />
-            </div>
-            <div className="md:w-2/3 text-center mt-5">
-              <h2 className="text-yellow-500 text-3xl font-semibold">
-                Why Should You Join Us?
-              </h2>
-              <h4 className="text-orange-300 text-lg font-semibold my-2">
+            <div className="md:w-1/2 mt-5">
+              <h2 className="text-yellow-500 text-3xl font-bold uppercase">
                 About Us
-              </h4>
+              </h2>
               <p className="my-2">
                 Our company is a wind energy startup that aims to revolutionize
                 the renewable energy industry. We are developing a cutting-edge
@@ -88,37 +115,20 @@ const LandingPage = (props) => {
                 dependence on fossil fuels and combat climate change.
               </p>
             </div>
+
+            <div className="md:w-1/3">
+              <img src={people} alt="people" className="" />
+            </div>
           </div>
 
-          <div className="mt-6">
-            <h4 className="text-white my-5 text-center text-orange-300 text-2xl">
-              Investment opportunities
-            </h4>
-            <div className="md:flex justify-center gap-7">
-              <div className="md:w-1/4 w-full mx-auto bg-[rgba(0,0,0,0.2)] p-5 rounded-2xl m-3">
-                <BsLightbulb className="text-yellow-500 text-4xl mx-auto" />
-                <p className="text-center my-3 break-all">
-                  Underperformance and root-cause identified real time
-                </p>
+          <div className="md:flex gap-7 justify-between my-12">
+              <div className="w-1/3 hidden md:block">
+                <img src={mission} alt="" />
               </div>
-              <div className="md:w-1/4 w-full mx-auto bg-[rgba(0,0,0,0.2)] p-5 rounded-2xl m-3">
-                <BsBarChartLine className="text-yellow-500 text-4xl mx-auto" />
-                <p className="text-center my-3 break-all">
-                  Cost-effective since it utilizes 20-27 per cent lower than the
-                  cheapest fossil fuel.
-                </p>
-              </div>
-              <div className="md:w-1/4 w-full mx-auto bg-[rgba(0,0,0,0.2)] p-5 rounded-2xl m-3">
-                <IoFootsteps className="text-yellow-500 text-4xl mx-auto" />
-                <p className="text-center my-3 break-all">
-                  Invest in a green future: Support the development of wind
-                  energy projects and reduce carbon footprint
-                </p>
-              </div>
-            </div>
-            <div className="md:flex gap-7 my-12">
-              <div className="md:w-2/3 text-center">
-                <h4 className="text-orange-300 text-3xl my-3">Our Mission</h4>
+              <div className="md:w-1/2">
+                <h4 className="text-yellow-500 uppercase font-bold text-3xl my-3">
+                  Our Mission
+                </h4>
                 <p>
                   We are committed to using energy effectively and efficiently
                   with new advancements in technology and share the technology
@@ -126,32 +136,55 @@ const LandingPage = (props) => {
                   Join The Movement By Subscribing For Our ICO.
                 </p>
               </div>
+            </div>
 
-              <div className="w-1/5 hidden md:block">
-                <img
-                  src="https://dummyimage.com/24x24/#ffffff"
-                  alt="dummmyimage"
-                  className="w-full"
-                />
+          <div className="mt-6">
+            <h4 className="text-white my-5 uppercase font-bold text-center text-zinc-300 text-xl">
+              Investment opportunities
+            </h4>
+            <div className="md:flex justify-center gap-7">
+              <div className="md:w-1/3 w-full mx-auto bg-[rgba(0,0,0,0.2)] p-5 rounded-2xl m-3">
+                <BsLightbulb className="text-yellow-500 text-7xl mx-auto" />
+                <p className="text-center my-3 break-all">
+                  Underperformance and root-cause identified real time
+                </p>
+              </div>
+              <div className="md:w-1/3 w-full mx-auto bg-[rgba(0,0,0,0.2)] p-5 rounded-2xl m-3">
+                <BsBarChartLine className="text-yellow-500 text-7xl mx-auto" />
+                <p className="text-center my-3 break-all">
+                  Cost-effective since it utilizes 20-27 per cent lower than the
+                  cheapest fossil fuel.
+                </p>
+              </div>
+              <div className="md:w-1/3 w-full mx-auto bg-[rgba(0,0,0,0.2)] p-5 rounded-2xl m-3">
+                <IoFootsteps className="text-yellow-500 text-7xl mx-auto" />
+                <p className="text-center my-3 break-all">
+                  Invest in a green future: Support the development of wind
+                  energy projects and reduce carbon footprint
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="md:w-4/5 md:p-16 p-6 mx-auto">
-          <h2 className="text-white text-3xl font-bold text-center">
+        <section className="md:w-4/5 md:mt-24 mt-8 md:mx-auto m-8 flex gap-8 justify-between">
+          <div className="md:w-1/2">
+          <h2 className="text-yellow-500 text-3xl font-bold">
             Frequently Asked Questions
           </h2>
-          {faqs.map(({question, answer}, index) => (
-            <div className="bg-zinc-800 m-5 text-center md:text-left rounded-2xl shadow-lg shadow-black/40 min-h-1/5 p-8 ">
-              <h4 className="text-yellow-500 text-xl font-semibold">
-                {index+1}. {question}
+          {faqs.map(({ question, answer }, index) => (
+            <div className=" my-5 text-center md:text-left rounded-2xl shadow-lg shadow-black/40 min-h-1/5 p-8 ">
+              <h4 className="text-zinc-200 text-xl font-semibold">
+                {index + 1}. {question}
               </h4>
-              <p className="">
-                {answer}
-              </p>
+              <p className="">{answer}</p>
             </div>
           ))}
+          </div>
+
+          <div className="w-1/3 hidden md:block">
+            <img src={faq} alt="" className="" />
+          </div>
         </section>
       </main>
       <Footer />

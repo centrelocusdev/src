@@ -78,13 +78,13 @@ const Navbar = () => {
         <div className="text-zinc-200 flex gap-4 md:block hidden">
           <a
             href="/register"
-            className="border border-yellow-600 rounded-lg px-3 py-1 text-yellow-600 hover:bg-yellow-600 hover:text-zinc-900"
+            className="font-semibold border border-yellow-600 rounded-lg px-3 py-2 text-yellow-600 hover:bg-yellow-600 hover:text-zinc-900"
           >
             Register
           </a>
           <a
             href="/login"
-            className="ml-3 border border-yellow-600 bg-yellow-600 text-zinc-900 rounded-lg px-3 py-1 hover:bg-transparent hover:text-yellow-600 hover:border-yellow-600"
+            className="font-semibold ml-3 border border-yellow-600 bg-yellow-600 text-zinc-900 rounded-lg px-3 py-2 hover:bg-transparent hover:text-yellow-600 hover:border-yellow-600"
           >
             Login
           </a>

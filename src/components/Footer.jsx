@@ -20,8 +20,8 @@ const Footer = () => {
       <footer className="text-zinc-300 body-font">
         <div className="container px-5 pt-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col justify-center">
           <div className="md:w-1/5 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-            <a className="flex title-font font-medium items-center md:justify-start justify-center text-orange-300">
-              <span className="ml-3 text-xl">SRC</span>
+            <a className="flex title-font font-medium items-center md:justify-start justify-center text-yellow font-bold">
+              <span className=" text-xl">SRC</span>
             </a>
             <p className="mt-2 text-base text-zinc-400">
               with SRC, we can save on spending on energy usage.
@@ -33,7 +33,7 @@ const Footer = () => {
           </div>
           <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center text-zinc-400 justify-end">
             <div class="lg:w-1/4 md:w-1/2 w-full px-2">
-              <h2 class="title-font font-medium text-orange-300 tracking-widest text-sm mb-3 uppercase">
+              <h2 class="title-font text-yellow font-bold tracking-widest text-sm mb-3 uppercase">
                 menu
               </h2>
               <nav class="list-none mb-10">
@@ -60,7 +60,7 @@ const Footer = () => {
               </nav>
             </div>
             <div class="lg:w-1/4 md:w-1/2 w-full px-2">
-              <h2 class="title-font font-medium text-orange-300 tracking-widest text-sm mb-3 uppercase">
+              <h2 class="title-font font-medium text-yellow font-bold tracking-widest text-sm mb-3 uppercase">
                 social media
               </h2>
               <nav class="list-none mb-10">
@@ -82,7 +82,7 @@ const Footer = () => {
               </nav>
             </div>
             <div class="lg:w-1/4 md:w-1/2 w-full px-2">
-              <h2 class="title-font font-medium text-orange-300 tracking-widest text-sm mb-3 uppercase">
+              <h2 class="title-font font-medium text-yellow font-bold tracking-widest text-sm mb-3 uppercase">
                 license
               </h2>
               <nav class="list-none mb-10">

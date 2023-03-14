@@ -86,7 +86,7 @@ export const adminLogin = async (email, password) => {
 //get user by token
 export const getCurrentUser = async () => {
   const response = await axios.get(`${api_url}/current_user/`, headers);
-
+  
   if (response.data) {
     return response.data;
   } else {

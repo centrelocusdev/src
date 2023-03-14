@@ -21,7 +21,10 @@ const Login = () => {
   const onSubmit = async (e) => {
       e.preventDefault();
       const res = await login(formData)
-      if(res?.user) navigate('/user-dashboard')
+      if(res?.user.is_staff)
+        navigate('/admin-dashboard')
+      else
+        navigate('/user-dashboard')
   };
 
   return (
