@@ -19,7 +19,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="w-full bg-[#111] py-3 shadow-lg">
+    <div className="w-full bg-[#111] py-3 shadow-lg top-0 fixed z-10">
       <div className="flex flex-wrap flex-col md:flex-row justify-between md:items-center md:px-5">
         <div className="flex items-center">
           <button
