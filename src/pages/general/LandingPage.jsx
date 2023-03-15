@@ -10,6 +10,7 @@ import mission from "../../assets/mission.svg";
 import people from "../../assets/people.svg";
 import faq from "../../assets/faq.svg";
 
+
 const LandingPage = (props) => {
   const calculateTimeLeft = () => {
     const difference = +new Date("2023-02-21") - +new Date();
@@ -100,7 +101,7 @@ const LandingPage = (props) => {
           </div>
         </section>
 
-        <section className="w-4/5 md:p-16 p-6 mx-auto bg-zinc-800 md:my-8 m-4 rounded-2xl shadow-xl shadow-black/40 ">
+        <section id="About" className="w-4/5 md:p-16 p-6 mx-auto bg-zinc-800 md:my-8 m-4 rounded-2xl shadow-xl shadow-black/40 ">
           <div className="md:flex justify-between gap-7">
             <div className="md:w-1/2 mt-5">
               <h2 className="text-yellow-500 text-3xl font-bold uppercase">
@@ -167,7 +168,7 @@ const LandingPage = (props) => {
           </div>
         </section>
 
-        <section className="md:w-4/5 md:mt-24 mt-8 md:mx-auto m-8 flex gap-8 justify-between">
+        <section id="FAQ" className="md:w-4/5 md:mt-24 mt-8 md:mx-auto m-8 flex gap-8 justify-between">
           <div className="md:w-1/2">
           <h2 className="text-yellow-500 text-3xl font-bold">
             Frequently Asked Questions
