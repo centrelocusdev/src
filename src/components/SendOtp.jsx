@@ -32,7 +32,7 @@ const SendOtp = ({ handleShowRegister = () => {} }) => {
     <div className="h-screen bg-zinc-900 w-screen text-zinc-400">
       <div className="flex justify-between">
         {/* form */}
-        <div className="lg:w-1/3 h-screen px-16 flex flex-col justify-center">
+        <div className="lg:w-1/3 h-screen md:px-16 px-8 flex flex-col justify-center">
           <h2 className="text-3xl text-white font-bold uppercase underline decoration-4 underline-offset-8 decoration-yellow-500">
             Send OTP
           </h2>
@@ -50,7 +50,7 @@ const SendOtp = ({ handleShowRegister = () => {} }) => {
             />
 
             <button
-              className="bg-yellow-500 text-gray-900 py-2 w-full rounded-2xl font-semibold ml-3"
+              className="bg-yellow-500 text-gray-900 py-2 w-full rounded-2xl font-semibold md:ml-3 capitalize"
               type="submit"
             >
               send email
