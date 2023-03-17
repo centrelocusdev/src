@@ -120,7 +120,7 @@ const Signup = () => {
                   </div>
 
                   <div className="md:flex items-center gap-4 justiyfy-between">
-                    <button className="w-1/5 h-fit bg-yellow-500 text-gray-900 py-2 rounded-2xl font-semibold">
+                    <button className="md:w-1/5 h-fit bg-yellow-500 text-gray-900 px-4 py-2 rounded-2xl font-semibold">
                       Submit
                     </button>
                   </div>
